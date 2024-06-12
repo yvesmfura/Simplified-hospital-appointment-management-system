@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+Flask-Mail
+Werkzeug
+Flask-Migrate
+Flask-WTF

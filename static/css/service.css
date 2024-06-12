@@ -1,0 +1,118 @@
+/* General styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo img {
+    height: 40px;
+}
+
+header .navs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header .navs ul li {
+    margin-right: 20px;
+}
+
+header .navs ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header .navs ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Content area */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    color: green;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Service list */
+.service-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.service-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.service-item:hover {
+    background-color: #f1f1f1;
+    border-color: #ccc;
+}
+
+.service-details {
+    flex: 1;
+}
+
+.service-details .service-name {
+    font-weight: bold;
+    color: black;
+}
+
+.service-details .service-id {
+    margin: 5px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navs ul {
+        flex-direction: column;
+    }
+
+    .navs ul li {
+        margin: 10px 0;
+    }
+
+    .service-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

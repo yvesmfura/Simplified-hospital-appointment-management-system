@@ -1,0 +1,67 @@
+.container {
+    width: 100%; /* Adjust width to fill the entire viewport */
+    min-height: 100vh; /* Set minimum height to 100% of viewport height */
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 20px;
+    box-sizing: border-box; /* Include padding and border in total width/height */
+    display: flex; /* Use flexbox to align items vertically */
+    flex-direction: column; /* Align items vertically */
+}
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    position: relative;
+}
+.header .logo img {
+    height: 50px;
+}
+.header .navs ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+.header .navs ul li {
+    margin-right: 20px;
+}
+.header .navs ul li a {
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+}
+.header .navs ul li a:hover {
+    text-decoration: underline;
+}
+.logout-btn {
+    font-weight: bold;
+}
+.content {
+    padding: 20px;
+}
+.form_filter {
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+}
+.table th, .table td {
+    text-align: center;
+}
+.modal-body p {
+    margin-bottom: 10px;
+}

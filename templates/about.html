@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SHAMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body, h1, h2, h3, p, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar-item {
+            margin: 0 15px;
+        }
+
+        .navbar-item a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-item a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .description {
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .developers {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .developer {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 20px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .developer h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .developer p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .social-media {
+            margin-top: 15px;
+        }
+
+        .social-media a {
+            margin: 0 10px;
+            font-size: 20px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #007bff;
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feedback-form input, .feedback-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .feedback-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .feedback-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-story {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-story h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .user-story p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="/">Home</a></li>
+            <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
+            <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
+            <li class="navbar-item"><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>About Us</h1>
+        <p class="description">
+            Our hospital appointment management system, SHAMS (Simplified Hospital Appointments Management System), revolutionizes healthcare accessibility by providing a seamless platform for scheduling medical appointments. With SHAMS, patients can easily book appointments for a wide range of medical services, from dental care to ophthalmology, through a user-friendly interface. The system intelligently assigns appropriate doctors based on the selected service, ensuring patients receive specialized care tailored to their needs. Additionally, doctors benefit from efficient schedule management tools, allowing them to plan their appointments, block off time for breaks, and reschedule as necessary. Administrators have comprehensive oversight, managing user roles, monitoring system performance, and ensuring smooth operation. SHAMS streamlines the appointment process, reduces wait times, and enhances the overall efficiency of healthcare delivery.
+        </p>
+
+        <div class="developers">
+            <div class="developer">
+                <h2>Yves IRAKOZE MFURA</h2>
+                <p>Software Engineer</p>
+                <div class="social-media">
+                    <a href="https://facebook.com/yves.irakoze.mfura" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/in/yves-irakoze-mfura" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="mailto:mfurayves25@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="developer">
+                <h2>TWAYINGANYIKI Leonce promus</h2>
+                <p>Software Engineer</p>
+                <div class="social-media">
+                    <a href="https://facebook.com/leonce.promus" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/leonce_promus" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/in/leonce-promus" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/leonce_promus" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/leonce_promus" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="mailto:twayinganyiki.l@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-form">
+            <h2>Feedback</h2>
+            <form action="/submit-feedback" method="post">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email " name="email" placeholder="Your Email" required><br>
+                <textarea name="message" placeholder="Your Feedback" rows="5" required></textarea><br>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="user-story">
+            <h3>User Story 1: Booking an Appointment with Service Selection</h3>
+            <p><strong>As a:</strong> Patient<br>
+            <strong>Name:</strong> Mr. Murenzi Andrew<br>
+            <strong>I want to:</strong> book an appointment for a specific medical service<br>
+            <strong>So that:</strong> I can receive specialized medical care</p>
+            <p><strong>Scenario:</strong></p>
+            <ol>
+                <li>Mr. Murenzi Andrew logs into the hospital appointment system using his credentials Through Hospital website.</li>
+                <li>He navigates to the "Request Appointment" section.</li>
+                <li>He gets a form to put patient information.</li>
+                <li>He selects the desired service from a list of options (e.g., Dental, Internal Medicine, Gynecology, Ophthalmology).</li>
+                <li>Upon selecting "Dental," the system automatically assigns Dr. UWINEZA Ange, the Dental Surgeon.</li>
+                <li>He chooses an available date and time slot for his appointment.</li>
+                <li>He confirms the appointment booking.</li>
+                <li>Mr. Murenzi Andrew receives a confirmation notification via email and SMS.</li>
+            </ol>
+            <p><strong>Acceptance Criteria:</strong></p>
+            <ul>
+                <li>The system displays a list of medical services.</li>
+                <li>The system assigns the correct doctor based on the selected service.</li>
+                <li>The system successfully books the appointment and sends confirmation notifications.</li>
+                <li>The appointment appears in Mr. Murenzi Andrew's appointment list.</li>
+            </ul>
+        </div>
+
+        <div class="user-story">
+            <h3>User Story 2: Managing Doctor Schedule</h3>
+            <p><strong>As a:</strong> Doctor<br>
+            <strong>Name:</strong> Dr. UWINEZA Ange<br>
+            <strong>I want to:</strong> manage my appointment schedule<br>
+            <strong>So that:</strong> I can efficiently plan my day and provide timely care to my patients</p>
+            <p><strong>Scenario:</strong></p>
+            <ol>
+                <li>Dr. UWINEZA Ange logs into the hospital appointment system using her credentials.</li>
+                <li>She navigates to the "My Schedule" section.</li>
+                <li>She views her upcoming appointments, including the newly booked dental appointment with Mr. Murenzi Andrew.</li>
+                <li>She can update her availability, block off time for breaks, and reschedule appointments if necessary.</li>
+                <li>She confirms any changes to her schedule.</li>
+            </ol>
+            <p><strong>Acceptance Criteria:</strong></p>
+            <ul>
+                <li>The system displays Dr. UWINEZA Ange's current schedule.</li>
+                <li>The system allows her to update her availability and manage appointments.</li>
+                <li>Notifications are sent to patients if their appointments are rescheduled.</li>
+            </ul>
+        </div>
+
+        <div class="user-story">
+            <h3>User Story 3: Administering the System</h3>
+            <p><strong>As a:</strong> Admin<br>
+            <strong>Name:</strong> Technician Ngoga Gerald<br>
+            <strong>I want to:</strong> oversee the appointment system and manage user roles<br>
+            <strong>So that:</strong> I can ensure the system runs smoothly and all users have appropriate access</p>
+            <p><strong>Scenario:</strong></p>
+            <ol>
+                <li>Technician Ngoga Gerald logs into the hospital appointment system using his admin credentials.</li>
+                <li>He navigates to the "Admin Dashboard" section.</li>
+                <li>He manages user accounts, creating new doctor and patient accounts as needed.</li>
+                <li>He assigns roles to users, ensuring they have the correct permissions.</li>
+                <li>He monitors system performance and resolves any issues.</li>
+                <li>He assigns doctors on service on appointment date.</li>
+                <li>He can add or remove insurance companies.</li>
+                <li>He can change users credentials.</li>
+                <li>He also provides support to users.</li>
+            </ol>
+            <p><strong>Acceptance Criteria:</strong></p>
+            <ul>
+                <li>The system provides a comprehensive admin dashboard with system activity summaries.</li>
+                <li>The system allows Technician Ngoga Gerald to manage user accounts and roles effectively.</li>
+                <li>The system includes tools for monitoring performance and addressing issues.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SHAMS. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>
+

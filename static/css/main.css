@@ -1,0 +1,87 @@
+/* Reset some default styles */
+body, h1, p, a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Basic body styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    padding: 1px;
+}
+
+.navbar-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-item {
+    margin: 0 15px;
+}
+
+.navbar-item a {
+    color: white;
+    font-size: 18px;
+}
+.navbar-item a:hover {
+    text-decoration: underline;
+}
+/* Main Content */
+.content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.content h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.content a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+/* Footer */
+.footer {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.social-media {
+    margin-bottom: 10px;
+}
+
+.social-icon {
+    margin: 0 10px;
+    color: #333;
+    font-size: 20px;
+}
+
+.contact-support p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.copyright {
+    font-size: 12px;
+    margin-top: 10px;
+}

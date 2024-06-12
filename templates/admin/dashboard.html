@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/admin.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">
+                        <img src="../static/images/OUR_SYSTEM_LOGO_SHAS.png" alt="" >
+                    </a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/admin/get_feedbacks">Feedbacks</a></li>
+                    <li><a href="/admin/profile">Profile</a></li>
+                    <button type="button" class="logout-button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                      Logout
+                  </button>
+                  
+                  
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Section -->
+        <main>
+            <!-- User Management Section -->
+            <section class="user-management">
+                <h2>User Management</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-user" placeholder="Search by Name or User ID">
+                    <i class="fas fa-search"></i>
+                    <!-- Button to Trigger Create New User Modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewUserModal">
+                        Create New User
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>User ID</th>
+                                <th>Role</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            <!-- Dynamic content -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- Hospital Management Section -->
+            <section class="hospital-management">
+                <h2>Hospital Management</h2>
+
+                 <!-- Staff Management -->
+                 <div class="staff-management">
+                    <h3>Staff Management</h3>
+                    <div class="search-bar">
+                        <input type="text" id="search-staff" placeholder="Search by Name or User ID">
+                        <i class="fas fa-search"></i>
+                        <!-- Button to Trigger Create New Staff Modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewStaffModal">
+                                Create New Staff
+                            </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>User ID</th>
+                                    <th>Staff ID</th>
+                                    <th>Specialization</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staff-table-body">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Services Management -->
+                <div class="services-management">
+                    <h3>Services Management</h3>
+                    <div class="search-bar">
+                        <input type="text" id="search-service" placeholder="Search by Service Name">
+                        <i class="fas fa-search"></i>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewServiceModal">
+                            Create New Service
+                        </button>
+                        
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>ID</th>
+                                    <th>Head</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="service-table-body">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                  <!-- Insurances Management -->
+                <div class="insurances-management">
+                    <h3>Insurances Management</h3>
+                    <div class="search-bar">
+                        <input type="text" id="search-insurance" placeholder="Search by Insurance Name or ID">
+                        <i class="fas fa-search"></i>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewInsuranceModal">
+                            Add New Insurance
+                        </button>
+  
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Insurance ID</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="insurance-table-body">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Schedule Management Section -->
+                <h3>Schedule Management</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-schedule" placeholder="Search by Appointment Date">
+                    <i class="fas fa-search"></i>
+                    
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Schedule ID</th>
+                                <th>Staff ID</th>
+                                <th>Staff Name</th>
+                                <th>Service ID</th>
+                                <th>Service Name</th>
+                                <th>Appointment Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-table-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+
+             <!-- Appointment Management Section -->
+                <h3>Appointment Management</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-appointment" placeholder="Search by user id or client id">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>USER ID</th>
+                                <th>Client ID</th>
+                                <th>Client Name</th>
+                                <th>Staff ID</th>
+                                <th>Service</th>
+                                <th>Appointment Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointment-table-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+            <!-- System Management Section -->
+            <section class="System-management">
+                <h2>System Management</h2>
+              <!-- Notification Management-->
+                <h3>Notification Management</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-notification" placeholder="Search by Message Content">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Notification ID</th>
+                                <th>Sender ID</th>
+                                <th>Recipient ID</th>
+                                <th>Message</th>
+                                <th>Timestamp</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notification-table-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+        
+
+             <!-- Feedback Management Section -->
+                <h3>Feedback Management</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-feedback" placeholder="Search by Message Content">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feedback ID</th>
+                                <th>User ID</th>
+                                <th>Message</th>
+                                <th>Feedback Date</th>
+                                <th>Read</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedback-table-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <!--MODALS-->
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editUserModalLabel">Edit User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-user-form">
+                        <div class="mb-3">
+                            <label for="user-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="user-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-id" class="col-form-label">User ID:</label>
+                            <input type="text" class="form-control" id="user-id" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-role" class="col-form-label">Role:</label>
+                            <input type="text" class="form-control" id="user-role">
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="user-email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-changes-btn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Edit User Modal -->
+
+
+    <!-- Notify Modal -->
+    <div class="modal fade" id="notifyModal" tabindex="-1" aria-labelledby="notifyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifyModalLabel">Send Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="notifyForm" action="/admin/notify" method="post">
+                        <input type="hidden" name="user_id" id="notifyUserId">
+                        <div class="mb-3">
+                            <label for="notifyMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="notifyMessage" name="message" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Send Notification</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Edit Staff Modal -->
+<div class="modal fade" id="editStaffModal" tabindex="-1" aria-labelledby="editStaffModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editStaffModalLabel">Edit Staff</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-staff-form">
+                    <div class="mb-3">
+                        <label for="staff-id" class="col-form-label">Staff ID:</label>
+                        <input type="text" class="form-control" id="staff-id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="staff-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="staff-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="staff-specialization" class="col-form-label">Specialization:</label>
+                        <input type="text" class="form-control" id="staff-specialization">
+                    </div>
+                    <div class="mb-3">
+                        <label for="staff-contact" class="col-form-label">Contact:</label>
+                        <input type="text" class="form-control" id="staff-contact">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="update-staff-button">Update Staff</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Edit Staff Modal -->
+
+
+    <!-- Create New Staff Modal -->
+    <div class="modal fade" id="createNewStaffModal" tabindex="-1" aria-labelledby="createNewStaffModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createNewStaffModalLabel">Create New Staff</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createNewStaffForm">
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label for="new-staff-fullname" class="col-form-label">Full Name:</label>
+                            <input type="text" class="form-control" id="new-staff-fullname" required>
+                        </div>
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="new-staff-username" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="new-staff-username" required>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="new-staff-email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="new-staff-email" required>
+                        </div>
+                        <!-- Contact Number -->
+                        <div class="mb-3">
+                            <label for="new-staff-contact-number" class="col-form-label">Contact Number:</label>
+                            <input type="tel" class="form-control" id="new-staff-contact-number" required>
+                        </div>
+                        <!-- Specialization -->
+                        <div class="mb-3">
+                            <label for="new-staff-specialization" class="col-form-label">Specialization:</label>
+                            <input type="text" class="form-control" id="new-staff-specialization" required>
+                        </div>
+                        <!-- Role -->
+                        <div class="mb-3">
+                            <label for="new-staff-role" class="col-form-label">Role:</label>
+                            <select class="form-select" id="new-staff-role" required>
+                                <option value="staff">Staff</option>
+                            </select>
+                        </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="new-staff-password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="new-staff-password" required>
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="new-staff-confirm-password" class="col-form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="new-staff-confirm-password" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="createStaffBtn">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Create New User Modal -->
+    <div class="modal fade" id="createNewUserModal" tabindex="-1" aria-labelledby="createNewUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createNewUserModalLabel">Create New User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createNewUserForm">
+                        <div class="mb-3">
+                            <label for="new-user-username" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="new-user-username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-user-password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="new-user-password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-user-role" class="col-form-label">Role:</label>
+                            <select class="form-select" id="new-user-role" required>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                                         <!-- Password -->
+                    <div class="mb-3">
+                        <label for="new-staff-password" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="new-staff-password" required>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="mb-3">
+                        <label for="new-staff-confirm-password" class="col-form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="new-staff-confirm-password" required>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="createUserBtn">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Service Modal -->
+    <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="editServiceModalLabel">Edit Service</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="service-name" class="col-form-label">Service Name:</label>
+                  <input type="text" class="form-control" id="service-name">
+                </div>
+                <div class="mb-3">
+                  <label for="service-head" class="col-form-label">Head:</label>
+                  <input type="text" class="form-control" id="service-head">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End of Edit Service Modal -->
+
+    <!-- Create New Service Modal -->
+    <div class="modal fade" id="createNewServiceModal" tabindex="-1" aria-labelledby="createNewServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="createNewServiceModalLabel">Create New Service</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="new-service-name" class="col-form-label">Service Name:</label>
+                  <input type="text" class="form-control" id="new-service-name">
+                </div>
+                <div class="mb-3">
+                  <label for="new-service-head" class="col-form-label">Head:</label>
+                  <input type="text" class="form-control" id="new-service-head">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End of Create New Service Modal -->
+
+
+   <!-- Add New Insurance Modal -->
+<div class="modal fade" id="addNewInsuranceModal" tabindex="-1" aria-labelledby="addNewInsuranceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addNewInsuranceModalLabel">Add New Insurance</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="new-insurance-name" class="col-form-label">Insurance Name:</label>
+                        <input type="text" class="form-control" id="new-insurance-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="add-insurance-button">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Insurance Modal -->
+<div class="modal fade" id="editInsuranceModal" tabindex="-1" aria-labelledby="editInsuranceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editInsuranceModalLabel">Edit Insurance</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="edit-insurance-name" class="col-form-label">Insurance Name:</label>
+                        <input type="text" class="form-control" id="edit-insurance-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-insurance-id" class="col-form-label">Insurance ID:</label>
+                        <input type="text" class="form-control" id="edit-insurance-id" readonly>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="update-insurance-button">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--Logout modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+          <!-- The modal dialog -->
+          <div class="modal-dialog">
+              <!-- Modal content -->
+              <div class="modal-content">
+                  <!-- Modal header -->
+                  <div class="modal-header">
+                      <!-- Modal title -->
+                      <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                      <!-- Close button -->
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                      Are you sure you want to logout?
+                  </div>
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                      <!-- Cancel button -->
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <!-- Logout button -->
+                      <form action="/admin/logout" method="post">
+                          <button type="submit" class="btn btn-primary">Logout</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+   </div>
+
+  <!-- Edit Schedule Modal -->
+<div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editScheduleModalLabel">Edit Schedule</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-schedule-form">
+                    <div class="mb-3">
+                        <label for="staff-name" class="col-form-label">Staff Name:</label>
+                        <select class="form-control" id="staff-name">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="service-name" class="col-form-label">Service Name:</label>
+                        <select class="form-control" id="service-name">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="appointment-date" class="col-form-label">Appointment Date:</label>
+                        <input type="date" class="form-control" id="appointment-date">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-schedule-changes-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Edit Schedule Modal -->
+
+
+
+<!-- Create Schedule Modal -->
+<div class="modal fade" id="createScheduleModal" tabindex="-1" aria-labelledby="createScheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createScheduleModalLabel">Create Schedule</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="create-schedule-form">
+                    <div class="mb-3">
+                        <label for="create-service-name" class="col-form-label">Service Name:</label>
+                        <select class="form-control" id="create-service-name"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="create-staff-name" class="col-form-label">Staff Name:</label>
+                        <input type="text" class="form-control" id="create-staff-name">
+                        <input type="hidden" id="create-staff-id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="create-appointment-date" class="col-form-label">Appointment Date:</label>
+                        <input type="date" class="form-control" id="create-appointment-date">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="create-schedule-btn">Create Schedule</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Create Schedule Modal -->
+
+    <div class="footer">
+        <p class="text-secondary"> &copy;copyright SHAS, May 2024</p>
+   
+    </div>
+          
+    
+
+    <!--JAVA SCRIPTS-->
+    <script>
+
+        document.getElementById('search-user').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/user?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('user-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.user_id}</td>
+                    <td>${user.role}</td>
+                    <td>${user.email}</td>
+                    <td>
+                    <button type="button" class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#editUserModal" data-user-id="${user.user_id}" data-username="${user.username}" data-role="${user.role}" data-email="${user.email}">Edit</button>
+                    <button type="button" class="btn btn-primary notify-button" data-bs-toggle="modal" data-bs-target="#notifyModal" data-user-id="${user.user_id}">Notify</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+                });
+                addEditButtonEventListeners();
+                addNotifyButtonEventListeners();
+            })
+            .catch(error => console.error('Error fetching users:', error));
+        });
+
+        
+        function addEditButtonEventListeners() {
+            document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-user-id');
+                const username = this.getAttribute('data-username');
+                const role = this.getAttribute('data-role');
+                const email = this.getAttribute('data-email');
+
+                document.getElementById('user-id').value = userId;
+                document.getElementById('user-name').value = username;
+                document.getElementById('user-role').value = role;
+                document.getElementById('user-email').value = email;
+            });
+            });
+        }
+
+        function addNotifyButtonEventListeners() {
+            document.querySelectorAll('.notify-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const userId = this.getAttribute('data-user-id');
+                    document.getElementById('notifyUserId').value = userId;
+                });
+            });
+        }
+
+        document.getElementById('save-changes-btn').addEventListener('click', function() {
+            const userId = document.getElementById('user-id').value;
+            const username = document.getElementById('user-name').value;
+            const role = document.getElementById('user-role').value;
+            const email = document.getElementById('user-email').value;
+
+            const userData = {
+            user_id: userId,
+            username: username,
+            role: role,
+            email: email
+            };
+
+            fetch('/admin/edit_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+            if (data.success) {
+                alert('User details updated successfully!');
+                // Optionally, you can refresh the user list or update the table directly
+                document.getElementById('edit-user-form').reset();
+                $('#editUserModal').modal('hide');
+                // Optionally, re-fetch user data to update the table
+                document.getElementById('search-user').dispatchEvent(new Event('input'));
+            } else {
+                alert('Failed to update user details: ' + data.message);
+            }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('search-staff').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/staff?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('staff-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(staff => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${staff.full_name}</td>
+                            <td>${staff.user_id}</td>
+                            <td>${staff.staff_id}</td>
+                            <td>${staff.specialization}</td>
+                            <td>
+                                <button class="action-btn edit-staff" data-bs-toggle="modal" data-bs-target="#editStaffModal" data-staff-id="${staff.staff_id}">Edit Staff</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+
+                    document.querySelectorAll('.edit-staff').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const staffId = this.getAttribute('data-staff-id');
+                            fetch(`/admin/get/staff/${staffId}`)
+                                .then(response => response.json())
+                                .then(staff => {
+                                    document.getElementById('staff-id').value = staff.staff_id;
+                                    document.getElementById('staff-name').value = staff.full_name;
+                                    document.getElementById('staff-specialization').value = staff.specialization;
+                                    document.getElementById('staff-contact').value = staff.contact_number;
+                                    document.getElementById('update-staff-button').setAttribute('data-staff-id', staffId);
+                                })
+                                .catch(error => console.error('Error fetching staff details:', error));
+                        });
+                    });
+                })
+                .catch(error => console.error('Error fetching staff:', error));
+        });
+
+        document.getElementById('update-staff-button').addEventListener('click', function() {
+            const staffId = this.getAttribute('data-staff-id');
+            const updatedStaff = {
+                full_name: document.getElementById('staff-name').value,
+                specialization: document.getElementById('staff-specialization').value,
+                contact_number: document.getElementById('staff-contact').value,
+            };
+
+            fetch(`/admin/edit/staff/${staffId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedStaff),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Optionally update the UI or show a success message
+                    alert('Staff updated successfully!');
+                    location.reload();
+                } else {
+                    alert('Failed to update staff');
+                }
+            })
+            .catch(error => console.error('Error updating staff:', error));
+        });
+
+        document.getElementById('search-insurance').addEventListener('input', function() {
+    const query = this.value;
+    fetch(`/admin/search/insurance?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('insurance-table-body');
+            tableBody.innerHTML = '';
+            data.forEach(insurance => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${insurance.name}</td>
+                    <td>${insurance.insurance_id}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary edit-insurance-button" data-bs-toggle="modal" data-bs-target="#editInsuranceModal" data-insurance-id="${insurance.insurance_id}" data-insurance-name="${insurance.name}">Edit Insurance</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            addEditInsuranceButtonEventListeners();
+        })
+        .catch(error => console.error('Error fetching insurances:', error));
+});
+
+function addEditInsuranceButtonEventListeners() {
+    document.querySelectorAll('.edit-insurance-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const insuranceId = this.getAttribute('data-insurance-id');
+            const insuranceName = this.getAttribute('data-insurance-name');
+
+            document.getElementById('edit-insurance-id').value = insuranceId;
+            document.getElementById('edit-insurance-name').value = insuranceName;
+        });
+    });
+}
+
+document.getElementById('add-insurance-button').addEventListener('click', function() {
+    const newInsurance = {
+        name: document.getElementById('new-insurance-name').value
+    };
+
+    fetch('/admin/add/insurance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newInsurance),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Insurance added successfully!');
+            location.reload();
+        } else {
+            alert('Failed to add insurance');
+        }
+    })
+    .catch(error => console.error('Error adding insurance:', error));
+});
+
+document.getElementById('update-insurance-button').addEventListener('click', function() {
+    const insuranceId = document.getElementById('edit-insurance-id').value;
+    const updatedInsurance = {
+        name: document.getElementById('edit-insurance-name').value,
+    };
+
+    fetch(`/admin/edit/insurance/${insuranceId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedInsurance),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Insurance updated successfully!');
+            location.reload();
+        } else {
+            alert('Failed to update insurance');
+        }
+    })
+    .catch(error => console.error('Error updating insurance:', error));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for search input to fetch schedules dynamically
+    document.getElementById('search-schedule').addEventListener('input', function() {
+        const query = this.value;
+        fetch(`/admin/search/schedule?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('schedule-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(schedule => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${schedule.schedule_id}</td>
+                        <td>${schedule.staff_id}</td>
+                        <td>${schedule.staff_name}</td>
+                        <td>${schedule.service_id}</td>
+                        <td>${schedule.service_name}</td>
+                        <td>${schedule.appointment_date}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary edit-schedule-button" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-schedule-id="${schedule.schedule_id}" data-staff-id="${schedule.staff_id}" data-service-id="${schedule.service_id}" data-staff-name="${schedule.staff_name}" data-service-name="${schedule.service_name}" data-appointment-date="${schedule.appointment_date}">Edit Schedule</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                addEditScheduleButtonEventListeners();
+            })
+            .catch(error => console.error('Error fetching schedules:', error));
+    });
+
+    // Function to add event listeners to the Edit Schedule buttons
+    function addEditScheduleButtonEventListeners() {
+        document.querySelectorAll('.edit-schedule-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const scheduleId = this.getAttribute('data-schedule-id');
+                const staffName = this.getAttribute('data-staff-name');
+                const serviceName = this.getAttribute('data-service-name');
+                const appointmentDate = this.getAttribute('data-appointment-date');
+
+                // Populate modal fields with the selected schedule data
+                document.getElementById('appointment-date').value = appointmentDate;
+
+                // Fetch and populate staff names
+                fetch('/admin/get/staff-names')
+                    .then(response => response.json())
+                    .then(staffNames => {
+                        const staffSelect = document.getElementById('staff-name');
+                        staffSelect.innerHTML = '';
+                        staffNames.forEach(staff => {
+                            const option = document.createElement('option');
+                            option.value = staff.staff_id;
+                            option.text = staff.staff_name;
+                            if (staff.staff_name === staffName) {
+                                option.selected = true;
+                            }
+                            staffSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching staff names:', error));
+
+                // Fetch and populate service names
+                fetch('/admin/get/service-names')
+                    .then(response => response.json())
+                    .then(serviceNames => {
+                        const serviceSelect = document.getElementById('service-name');
+                        serviceSelect.innerHTML = '';
+                        serviceNames.forEach(service => {
+                            const option = document.createElement('option');
+                            option.value = service.service_id;
+                            option.text = service.service_name;
+                            if (service.service_name === serviceName) {
+                                option.selected = true;
+                            }
+                            serviceSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching service names:', error));
+            });
+        });
+    }
+
+    // Event listener for save changes button
+    document.getElementById('save-schedule-changes-btn').addEventListener('click', function() {
+        const scheduleId = document.getElementById('schedule-id').value;
+        const staffId = document.getElementById('staff-name').value;
+        const serviceId = document.getElementById('service-name').value;
+        const appointmentDate = document.getElementById('appointment-date').value;
+
+        // Prepare data to send to the server
+        const updatedSchedule = {
+            schedule_id: scheduleId,
+            staff_id: staffId,
+            service_id: serviceId,
+            appointment_date: appointmentDate
+        };
+
+        // Send the updated data to the server
+        fetch(`/admin/update/schedule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedSchedule)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Schedule updated successfully!');
+                // Refresh or update the schedule list to reflect changes
+                location.reload(); // Alternatively, update the schedule list without reloading
+            } else {
+                alert('Failed to update schedule. Please try again.');
+            }
+        })
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+});
+
+
+        document.getElementById('search-notification').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/notification?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('notification-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(notification => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${notification.notification_id}</td>
+                            <td>${notification.sender_id}</td>
+                            <td>${notification.recipient_id}</td>
+                            <td>${notification.message}</td>
+                            <td>${notification.timestamp}</td>
+                            <td>${notification.status}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching notifications:', error));
+        });
+
+        document.getElementById('search-feedback').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/feedback?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('feedback-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(feedback => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${feedback.feedback_id}</td>
+                            <td>${feedback.user_id}</td>
+                            <td>${feedback.message}</td>
+                            <td>${feedback.feedback_date}</td>
+                            <td>${feedback.read}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching feedbacks:', error));
+        });
+
+        document.getElementById('search-appointment').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/appointment?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('appointment-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(appointment => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${appointment.appointment_id}</td>
+                    <td>${appointment.user_id}</td>
+                    <td>${appointment.client_id}</td>
+                    <td>${appointment.client_full_name}</td>
+                    <td>${appointment.staff_id}</td>
+                    <td>${appointment.service}</td>
+                    <td>${appointment.appointment_date}</td>
+                    <td>${appointment.status}</td>
+                `;
+                tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching appointments:', error));
+        });
+
+
+        document.getElementById('search-client').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/admin/search/client?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('client-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(client => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client.full_name}</td>
+                    <td>${client.user_id}</td>
+                    <td>${client.client_id}</td>
+                    <td>${client.contact_number}</td>
+                    <td>${client.date_of_birth}</td>
+                `;
+                tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching clients:', error));
+        });
+
+        document.getElementById('createStaffBtn').addEventListener('click', function() {
+            // Collect the form data
+            const fullName = document.getElementById('new-staff-fullname').value;
+            const username = document.getElementById('new-staff-username').value;
+            const email = document.getElementById('new-staff-email').value;
+            const contactNumber = document.getElementById('new-staff-contact-number').value;
+            const specialization = document.getElementById('new-staff-specialization').value;
+            const role = document.getElementById('new-staff-role').value;
+            const password = document.getElementById('new-staff-password').value;
+            const confirmPassword = document.getElementById('new-staff-confirm-password').value;
+    
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+    
+            // Create the data object to send
+            const staffData = {
+                full_name: fullName,
+                username: username,
+                email: email,
+                contact_number: contactNumber,
+                specialization: specialization,
+                role: role,
+                password: password
+            };
+    
+            // Send the data to the backend
+            fetch('/admin/create/staff', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(staffData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Staff created successfully!');
+                    // Optionally close the modal
+                    const createStaffModal = new bootstrap.Modal(document.getElementById('createNewStaffModal'));
+                    createStaffModal.hide();
+    
+                    // Optionally refresh the staff list or perform other UI updates
+                    // For example, you could trigger a fetch to update the staff table
+                    fetchStaffList();
+                } else {
+                    alert('Error creating staff: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error creating staff:', error));
+        });
+    
+        // Example function to refresh the staff list
+        function fetchStaffList() {
+            fetch('/admin/get/staff-list')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('staff-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(staff => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${staff.full_name}</td>
+                            <td>${staff.user_id}</td>
+                            <td>${staff.staff_id}</td>
+                            <td>${staff.specialization}</td>
+                            <td>
+                                <button class="action-btn edit-staff" data-bs-toggle="modal" data-bs-target="#editStaffModal">Edit Staff</button>
+                                <button class="action-btn schedule-staff" data-bs-toggle="modal" data-bs-target="#scheduleStaffModal">Schedule Staff</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching staff:', error));
+        }
+   
+        document.getElementById('createUserBtn').addEventListener('click', function() {
+            // Collect the form data
+            const username = document.getElementById('new-user-username').value;
+            const password = document.getElementById('new-user-password').value;
+            const role = document.getElementById('new-user-role').value;
+    
+            // Password confirmation
+            const confirmPassword = document.getElementById('new-user-confirm-password').value;
+    
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+    
+            // Create the data object to send
+            const userData = {
+                username: username,
+                password: password,
+                role: role
+            };
+    
+            // Send the data to the backend
+            fetch('/admin/create/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('User created successfully!');
+                    // Optionally close the modal or perform other actions
+                    const createUserModal = new bootstrap.Modal(document.getElementById('createNewUserModal'));
+                    createUserModal.hide();
+                } else {
+                    alert('Error creating user: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error creating user:', error));
+        });
+
+
+        document.getElementById('search-service').addEventListener('input', function() {
+        const query = this.value;
+        fetch(`/admin/search/service?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('service-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(service => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${service.name}</td>
+                        <td>${service.service_id}</td>
+                        <td>${service.head}</td>
+
+                        <td>
+                            <button class="action-btn edit-service" data-bs-toggle="modal" data-bs-target="#editServiceModal">Edit Service</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching services:', error));
+    });
+
+    </script>
+    
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+

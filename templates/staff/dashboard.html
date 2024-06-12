@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff-Doctor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staff.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/OUR_SYSTEM_LOGO_SHAS.png') }}" alt="logo">
+            </div>
+            <div class="navs w-75">
+                <ul>
+                    <li><a href="/staff/dashboard">Home</a></li>
+                    <li><a href="/staff/profile">Profile</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-secondary logout-btn" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+        </div>
+        <div class="content_part">
+            <div class="sidebar">
+                <div class="patient_profile">
+                    <div class="patient_desc">
+                        <h3>STAFF Member</h3>
+                        <h4>{{ full_name }}</h4>
+                    </div>
+                </div>
+                <div class="nav_links">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li><a href="/staff/notifications"><i class="fa fa-bell" aria-hidden="true"></i>Notifications</a></li>
+                        <li><a href="/staff/appointments"><i class="fa fa-calendar" aria-hidden="true"></i>My Appointments</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#feedbackModal"><i class="fa-solid fa-comment-dots"></i>Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section_body text-center w-75">
+                <div class="content">
+                    <div id="filter_above">
+                        <h5>Today's Date:</h5>
+                        <p id="today_date"></p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                    <h2>Welcome, {{ full_name }}!</h2>
+                    <p>Thank you for joining me in this session.</p>
+                    <div class="search-bar">
+                        <input type="text" id="search-patient" placeholder="Search patient by Name or User ID">
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>User ID</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResults">
+                                <!-- Dynamic content will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="text-secondary"> &copy;copyright SHAS, May 2024</p>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/feedbacks" method="post">
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Feedback</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form action="/staff/logout" method="post">
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Details Modal -->
+    <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewDetailsModalLabel">Client Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Full Name:</strong> <span id="clientFullName"></span></p>
+                    <p><strong>Client ID:</strong> <span id="clientId"></span></p>
+                    <p><strong>Date of Birth:</strong> <span id="clientDob"></span></p>
+                    <p><strong>Gender:</strong> <span id="clientGender"></span></p>
+                    <p><strong>Contact Number:</strong> <span id="clientContact"></span></p>
+                    <p><strong>Insurance:</strong> <span id="clientInsurance"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Modal -->
+    <div class="modal fade" id="notifyModal" tabindex="-1" aria-labelledby="notifyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifyModalLabel">Send Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="notifyForm" action="/staff/notify" method="post">
+                        <div class="mb-3">
+                            <label for="notificationMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="notificationMessage" name="message" rows="3" required></textarea>
+                        </div>
+                        <input type="hidden" id="notifyClientId" name="client_id">
+                        <input type="hidden" id="notifyClientFullName" name="client_full_name">
+                        <input type="hidden" id="notifyStaffUsername" name="staff_username">
+                        <input type="hidden" id="notifyDate" name="current_date">
+                        <button type="submit" class="btn btn-primary">Send Notification</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#search-patient').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: '/staff/search/client', 
+                    type: 'GET',
+                    data: { query: query },
+                    success: function(data) {
+                        var resultsDiv = $('#searchResults');
+                        resultsDiv.empty();
+                        if (data.length > 0) {
+                            data.forEach(function(client) {
+                                var clientRow = `<tr>
+                                    <td>${client.full_name}</td>
+                                    <td>${client.client_id}</td>
+                                    <td>
+                                        <button class="action-btn view-details" data-bs-toggle="modal" data-bs-target="#viewDetailsModal" 
+                                                data-full-name="${client.full_name}" 
+                                                data-client-id="${client.client_id}" 
+                                                data-date-of-birth="${client.date_of_birth}"
+                                                data-gender="${client.gender}" 
+                                                data-contact-number="${client.contact_number}" 
+                                                data-insurance="${client.insurance}">View Details</button>
+                                        <button class="action-btn notify" data-bs-toggle="modal" data-bs-target="#notifyModal"
+                                                data-client-id="${client.client_id}" 
+                                                data-full-name="${client.full_name}">Notify</button>
+                                    </td>
+                                </tr>`;
+                                resultsDiv.append(clientRow);
+                            });
+                        } else {
+                            resultsDiv.append('<tr><td colspan="3">No results found</td></tr>');
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+    
+            // Handle View Details Button Click
+            $(document).on('click', '.view-details', function() {
+                // Use data attributes to populate modal fields
+                $('#clientFullName').text($(this).data('full-name'));
+                $('#clientId').text($(this).data('client-id'));
+                $('#clientDob').text($(this).data('date-of-birth'));
+                $('#clientGender').text($(this).data('gender'));
+                $('#clientContact').text($(this).data('contact-number'));
+                $('#clientInsurance').text($(this).data('insurance'));
+            });
+    
+            // Handle Notify Button Click
+            $(document).on('click', '.notify', function() {
+                var clientId = $(this).data('client-id');
+                var fullName = $(this).data('full-name');
+                $('#notifyModal').on('hidden.bs.modal', function (e) {
+                    $('#notificationMessage').val(''); // Reset message textarea
+                });
+                $('#notifyClientId').val(clientId);
+                $('#notifyClientFullName').val(fullName);
+                $('#notifyStaffUsername').val('{{ full_name }}'); // Assuming this is the logged-in staff's name
+                var today = new Date();
+                var formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                $('#notifyDate').val(formattedDate);
+            });
+    
+            // Handle Notify Form Submission
+            $('#notifyForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+    
+                $.ajax({
+                    url: '/staff/notify',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert('Notification sent successfully!');
+                        $('#notifyModal').modal('hide');
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+    
+            // Get current date and display it
+            var today = new Date();
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            var formattedDate = today.toLocaleDateString('en-US', options);
+            $('#today_date').text(formattedDate);
+        });
+    </script>
+    
+</body>
+</html>
