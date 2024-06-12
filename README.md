@@ -1,6 +1,6 @@
 # Simplified Hospital Appointments Management System (SHAMS)
 
-![SHAMS Logo](link_to_logo)
+![SHAMS Logo](../static/images/OUR_SYSTEM_LOGO_SHAS.png)
 
 ## Table of Contents
 
@@ -47,8 +47,10 @@ The SHAMS system architecture is designed to ensure seamless data flow and robus
 ## Usage
 
 1. Access the SHAMS web application through the provided URL.
-2. Register as a patient, doctor, or administrator, depending on your role.
+2. Register as a patient, doctor, or administrator, depending on your role. Only clients can sign up, while staff and admins will be added through the admin portal. Initial admin will be added manually into the database.
 3. Explore the respective features based on your user role (e.g., booking appointments, managing schedules, overseeing system administration).
+4. The system has an internal notification system to communicate between users.
+5. Hospitals can integrate the system into their websites, allowing clients to visit the hospital website and request appointments. The system is centralized to enhance security and easy management across multiple hospitals.
 
 ## Contributing
 
