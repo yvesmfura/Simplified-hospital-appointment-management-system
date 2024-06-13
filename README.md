@@ -65,7 +65,9 @@ We welcome contributions from the community! If you'd like to contribute to SHAM
 
 ## Authors
 
-- Yves Irakoze Mfura ([GitHub](link_to_yves_github), [LinkedIn](link_to_yves_linkedin))
+- Yves Irakoze Mfura ([GitHub](https://github.com/yvesmfura), [LinkedIn](www.linkedin.com/in/
+yves-irakoze-mfura-203053252
+))
 - Twayinganyiki Leonce ([GitHub](link_to_leonce_github), [LinkedIn](link_to_leonce_linkedin))
 
 ## License
