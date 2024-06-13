@@ -1,6 +1,7 @@
 # Simplified Hospital Appointments Management System (SHAMS)
 
-![SHAMS Logo](../static/images/OUR_SYSTEM_LOGO_SHAS.png)
+<img width="134" alt="OUR_SYSTEM_LOGO_SHAS" src="https://github.com/yvesmfura/Simplified-hospital-appointment-management-system/assets/132387277/58b3e479-3825-41ba-b7cd-53c5b54cf046">
+
 
 ## Table of Contents
 
