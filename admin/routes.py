@@ -17,18 +17,22 @@ def admin_auth():
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
 
-        if user and check_password_hash(user.password, password):
-            if user.role == 'admin':
-                session['user_id'] = user.user_id
-                session['role'] = user.role
-                return redirect(url_for('admin.admin_dashboard'))
+        if user:
+            if check_password_hash(user.password, password):
+                if user.role == 'admin':
+                    session['user_id'] = user.user_id
+                    session['role'] = user.role
+                    return redirect(url_for('admin.admin_dashboard'))
+                else:
+                    flash('Access denied. Please log in through the correct portal.', 'error')
             else:
-                flash('Access denied. Please log in through the correct portal.', 'error')
-                return render_template('admin/adminlogin.html')
+                flash('Invalid password. Please try again.', 'error')
         else:
-            flash('Invalid email or password. Please try again.', 'error')
-            return render_template('admin/adminlogin.html')
+            flash('Invalid email. Please try again.', 'error')
+
+        return render_template('admin/adminlogin.html')
     return render_template('admin/adminlogin.html')
+
 
 @admin_bp.route('/dashboard')
 def admin_dashboard():
@@ -218,7 +222,8 @@ def search_client():
         'address_district': client.address_district,
         'address_sector': client.address_sector,
         'address_village': client.address_village,
-        'address_cell': client.address_cell
+        'address_cell': client.address_cell,
+        'email': User.query.get(client.user_id).email
     } for client in clients]
 
     return jsonify(client_list)
@@ -420,55 +425,6 @@ def edit_staff(staff_id):
     return jsonify({'success': False, 'message': 'Staff not found'}), 404
 
 
-# Dynamic searching and fetching of service data
-@admin_bp.route('/search/service', methods=['GET'])
-def search_service():
-    query = request.args.get('query', '')
-    if query:
-        services = Service.query.filter(
-            (Service.name.ilike(f'%{query}%')) | (Service.service_id.ilike(f'%{query}%')) | (Service.head.ilike(f'%{query}%'))
-        ).all()
-    else:
-        services = []
-
-    service_list = [{
-        'service_id': service.service_id,
-        'name': service.name,
-        'head': service.head
-    } for service in services]
-
-    return jsonify(service_list)
-
-
-@admin_bp.route('/get/service/<service_id>', methods=['GET'])
-def get_service(service_id):
-    service = Service.query.get(service_id)
-    if service:
-        service_data = {
-            'service_id': service.service_id,
-            'name': service.name,
-            'head': service.head,
-        }
-        return jsonify(service_data)
-    return jsonify({'error': 'Service not found'}), 404
-
-@admin_bp.route('/edit/service/<service_id>', methods=['POST'])
-def edit_service(service_id):
-    data = request.json
-    service = Service.query.get(service_id)
-    if service:
-        service.name = data.get('name', service.name)
-        service.head = data.get('head', service.head)
-        try:
-            db.session.commit()
-            flash('Service updated successfully!', 'success')
-            return jsonify({'success': True})
-        except Exception as e:
-            db.session.rollback()
-            return jsonify({'success': False, 'message': str(e)}), 500
-    return jsonify({'success': False, 'message': 'Service not found'}), 404
-
-
 @admin_bp.route('/search/insurance', methods=['GET'])
 def search_insurance():
     query = request.args.get('query', '')
@@ -553,40 +509,85 @@ def search_schedule():
     return jsonify(schedule_list)
 
 
-# Route to fetch staff names for dropdown
+# Route to fetch all staff names
 @admin_bp.route('/get/staff-names', methods=['GET'])
 def get_staff_names():
     staff_list = Staff.query.all()
-    staff_names = [{'staff_id': s.staff_id, 'staff_name': s.full_name} for s in staff_list]
-    return jsonify(staff_names)
+    staff_data = [{
+        'staff_id': staff.staff_id,
+        'staff_name': staff.full_name
+    } for staff in staff_list]
 
-# Route to fetch service names for dropdown
-@admin_bp.route('/get/service-names', methods=['GET'])
-def get_service_names():
-    service_list = Service.query.all()
-    service_names = [{'service_id': s.service_id, 'service_name': s.name} for s in service_list]  # Use correct attribute name
-    return jsonify(service_names)
+    return jsonify(staff_data)
 
-# Route to update the schedule details
+# Route to update a schedule
 @admin_bp.route('/update/schedule', methods=['POST'])
 def update_schedule():
     data = request.get_json()
     schedule_id = data.get('schedule_id')
     staff_id = data.get('staff_id')
-    service_id = data.get('service_id')
     appointment_date = data.get('appointment_date')
 
     schedule = Schedule.query.get(schedule_id)
+
     if not schedule:
         return jsonify({'success': False, 'message': 'Schedule not found'}), 404
 
+    schedule.staff_id = staff_id
+    schedule.appointment_date = datetime.fromisoformat(appointment_date)
+
     try:
-        schedule.staff_id = staff_id
-        schedule.service_id = service_id
-        schedule.start_time = datetime.strptime(appointment_date, '%Y-%m-%d %H:%M:%S')  # Update this if format is different
-        
         db.session.commit()
         return jsonify({'success': True, 'message': 'Schedule updated successfully'})
     except Exception as e:
         db.session.rollback()
         return jsonify({'success': False, 'message': str(e)}), 500
+    
+
+# Dynamic searching and fetching of service data
+@admin_bp.route('/search/service', methods=['GET'])
+def search_service():
+    query = request.args.get('query', '')
+    if query:
+        services = Service.query.filter(
+            (Service.name.ilike(f'%{query}%')) | (Service.service_id.ilike(f'%{query}%')) | (Service.head.ilike(f'%{query}%'))
+        ).all()
+    else:
+        services = []
+
+    service_list = [{
+        'service_id': service.service_id,
+        'name': service.name,
+        'head': service.head
+    } for service in services]
+
+    return jsonify(service_list)
+
+
+@admin_bp.route('/get/service/<service_id>', methods=['GET'])
+def get_service(service_id):
+    service = Service.query.get(service_id)
+    if service:
+        service_data = {
+            'service_id': service.service_id,
+            'name': service.name,
+            'head': service.head,
+        }
+        return jsonify(service_data)
+    return jsonify({'error': 'Service not found'}), 404
+
+@admin_bp.route('/edit/service/<service_id>', methods=['POST'])
+def edit_service(service_id):
+    data = request.json
+    service = Service.query.get(service_id)
+    if service:
+        service.name = data.get('name', service.name)
+        service.head = data.get('head', service.head)
+        try:
+            db.session.commit()
+            flash('Service updated successfully!', 'success')
+            return jsonify({'success': True})
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'success': False, 'message': str(e)}), 500
+    return jsonify({'success': False, 'message': 'Service not found'}), 404

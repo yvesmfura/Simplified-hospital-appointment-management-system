@@ -4,3 +4,4 @@ Flask-Mail
 Werkzeug
 Flask-Migrate
 Flask-WTF
+gunicorn

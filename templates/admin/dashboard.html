@@ -235,8 +235,41 @@
                         </tbody>
                     </table>
                 </div>
-        
 
+            <!-- Client Management Section -->
+                <h3>Client Management</h3>
+                <div class="search-bar">
+                    <input type="text" id="search-client" placeholder="Search by Client Name">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client ID</th>
+                                <th>Name</th>
+                                <th>User ID</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Insurance</th>
+                                <th>Marital Status</th>
+                                <th>Occupation</th>
+                                <th>Country</th>
+                                <th>District</th>
+                                <th>Sector</th>
+                                <th>Village</th>
+                                <th>Cell</th>
+                            </tr>
+                        </thead>
+                        <tbody id="client-table-body">
+                            <!-- Dynamic content will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            
+
+   
              <!-- Feedback Management Section -->
                 <h3>Feedback Management</h3>
                 <div class="search-bar">
@@ -614,7 +647,7 @@
           </div>
    </div>
 
-  <!-- Edit Schedule Modal -->
+<!-- Edit Schedule Modal -->
 <div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -625,20 +658,27 @@
             <div class="modal-body">
                 <form id="edit-schedule-form">
                     <div class="mb-3">
+                        <label for="service-name" class="col-form-label">Service Name:</label>
+                        <input type="text" class="form-control" id="service-name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="service-id" class="col-form-label">Service ID:</label>
+                        <input type="text" class="form-control" id="service-id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="staff-id" class="col-form-label">Staff ID:</label>
+                        <input type="text" class="form-control" id="staff-id" readonly>
+                    </div>
+                    <div class="mb-3">
                         <label for="staff-name" class="col-form-label">Staff Name:</label>
                         <select class="form-control" id="staff-name">
                             <!-- Options will be populated dynamically -->
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="service-name" class="col-form-label">Service Name:</label>
-                        <select class="form-control" id="service-name">
-                            <!-- Options will be populated dynamically -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
                         <label for="appointment-date" class="col-form-label">Appointment Date:</label>
                         <input type="date" class="form-control" id="appointment-date">
+                        <input type="hidden" id="schedule-id">
                     </div>
                 </form>
             </div>
@@ -651,41 +691,6 @@
 </div>
 <!-- End of Edit Schedule Modal -->
 
-
-
-<!-- Create Schedule Modal -->
-<div class="modal fade" id="createScheduleModal" tabindex="-1" aria-labelledby="createScheduleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="createScheduleModalLabel">Create Schedule</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="create-schedule-form">
-                    <div class="mb-3">
-                        <label for="create-service-name" class="col-form-label">Service Name:</label>
-                        <select class="form-control" id="create-service-name"></select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="create-staff-name" class="col-form-label">Staff Name:</label>
-                        <input type="text" class="form-control" id="create-staff-name">
-                        <input type="hidden" id="create-staff-id">
-                    </div>
-                    <div class="mb-3">
-                        <label for="create-appointment-date" class="col-form-label">Appointment Date:</label>
-                        <input type="date" class="form-control" id="create-appointment-date">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="create-schedule-btn">Create Schedule</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End of Create Schedule Modal -->
 
     <div class="footer">
         <p class="text-secondary"> &copy;copyright SHAS, May 2024</p>
@@ -855,205 +860,223 @@
         });
 
         document.getElementById('search-insurance').addEventListener('input', function() {
-    const query = this.value;
-    fetch(`/admin/search/insurance?query=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById('insurance-table-body');
-            tableBody.innerHTML = '';
-            data.forEach(insurance => {
+            const query = this.value;
+            fetch(`/admin/search/insurance?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('insurance-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(insurance => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${insurance.name}</td>
                     <td>${insurance.insurance_id}</td>
                     <td>
-                        <button type="button" class="btn btn-primary edit-insurance-button" data-bs-toggle="modal" data-bs-target="#editInsuranceModal" data-insurance-id="${insurance.insurance_id}" data-insurance-name="${insurance.name}">Edit Insurance</button>
+                    <button type="button" class="btn btn-primary edit-insurance-button" data-bs-toggle="modal" data-bs-target="#editInsuranceModal" data-insurance-id="${insurance.insurance_id}" data-insurance-name="${insurance.name}">Edit Insurance</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
-            });
-            addEditInsuranceButtonEventListeners();
-        })
-        .catch(error => console.error('Error fetching insurances:', error));
-});
-
-function addEditInsuranceButtonEventListeners() {
-    document.querySelectorAll('.edit-insurance-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const insuranceId = this.getAttribute('data-insurance-id');
-            const insuranceName = this.getAttribute('data-insurance-name');
-
-            document.getElementById('edit-insurance-id').value = insuranceId;
-            document.getElementById('edit-insurance-name').value = insuranceName;
+                });
+                addEditInsuranceButtonEventListeners();
+            })
+            .catch(error => console.error('Error fetching insurances:', error));
         });
-    });
-}
 
-document.getElementById('add-insurance-button').addEventListener('click', function() {
-    const newInsurance = {
-        name: document.getElementById('new-insurance-name').value
-    };
+        function addEditInsuranceButtonEventListeners() {
+            document.querySelectorAll('.edit-insurance-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const insuranceId = this.getAttribute('data-insurance-id');
+                const insuranceName = this.getAttribute('data-insurance-name');
 
-    fetch('/admin/add/insurance', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newInsurance),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Insurance added successfully!');
-            location.reload();
-        } else {
-            alert('Failed to add insurance');
+                document.getElementById('edit-insurance-id').value = insuranceId;
+                document.getElementById('edit-insurance-name').value = insuranceName;
+            });
+            });
         }
-    })
-    .catch(error => console.error('Error adding insurance:', error));
-});
 
-document.getElementById('update-insurance-button').addEventListener('click', function() {
-    const insuranceId = document.getElementById('edit-insurance-id').value;
-    const updatedInsurance = {
-        name: document.getElementById('edit-insurance-name').value,
-    };
+        document.getElementById('add-insurance-button').addEventListener('click', function() {
+            const newInsurance = {
+            name: document.getElementById('new-insurance-name').value
+            };
 
-    fetch(`/admin/edit/insurance/${insuranceId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedInsurance),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Insurance updated successfully!');
-            location.reload();
-        } else {
-            alert('Failed to update insurance');
-        }
-    })
-    .catch(error => console.error('Error updating insurance:', error));
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Event listener for search input to fetch schedules dynamically
-    document.getElementById('search-schedule').addEventListener('input', function() {
-        const query = this.value;
-        fetch(`/admin/search/schedule?query=${query}`)
+            fetch('/admin/add/insurance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newInsurance),
+            })
             .then(response => response.json())
             .then(data => {
-                const tableBody = document.getElementById('schedule-table-body');
-                tableBody.innerHTML = '';
-                data.forEach(schedule => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${schedule.schedule_id}</td>
-                        <td>${schedule.staff_id}</td>
-                        <td>${schedule.staff_name}</td>
-                        <td>${schedule.service_id}</td>
-                        <td>${schedule.service_name}</td>
-                        <td>${schedule.appointment_date}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary edit-schedule-button" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-schedule-id="${schedule.schedule_id}" data-staff-id="${schedule.staff_id}" data-service-id="${schedule.service_id}" data-staff-name="${schedule.staff_name}" data-service-name="${schedule.service_name}" data-appointment-date="${schedule.appointment_date}">Edit Schedule</button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-                addEditScheduleButtonEventListeners();
+            if (data.success) {
+                alert('Insurance added successfully!');
+                location.reload();
+            } else {
+                alert('Failed to add insurance');
+            }
             })
-            .catch(error => console.error('Error fetching schedules:', error));
-    });
+            .catch(error => console.error('Error adding insurance:', error));
+        });
 
-    // Function to add event listeners to the Edit Schedule buttons
-    function addEditScheduleButtonEventListeners() {
-        document.querySelectorAll('.edit-schedule-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const scheduleId = this.getAttribute('data-schedule-id');
-                const staffName = this.getAttribute('data-staff-name');
-                const serviceName = this.getAttribute('data-service-name');
-                const appointmentDate = this.getAttribute('data-appointment-date');
+        document.getElementById('update-insurance-button').addEventListener('click', function() {
+            const insuranceId = document.getElementById('edit-insurance-id').value;
+            const updatedInsurance = {
+            name: document.getElementById('edit-insurance-name').value,
+            };
 
-                // Populate modal fields with the selected schedule data
-                document.getElementById('appointment-date').value = appointmentDate;
+            fetch(`/admin/edit/insurance/${insuranceId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedInsurance),
+            })
+            .then(response => response.json())
+            .then(data => {
+            if (data.success) {
+                alert('Insurance updated successfully!');
+                location.reload();
+            } else {
+                alert('Failed to update insurance');
+            }
+            })
+            .catch(error => console.error('Error updating insurance:', error));
+        });
 
-                // Fetch and populate staff names
-                fetch('/admin/get/staff-names')
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listener for search input to fetch schedules dynamically
+            document.getElementById('search-schedule').addEventListener('input', function() {
+                const query = this.value;
+                fetch(`/admin/search/schedule?query=${query}`)
                     .then(response => response.json())
-                    .then(staffNames => {
+                    .then(data => {
+                        const tableBody = document.getElementById('schedule-table-body');
+                        tableBody.innerHTML = '';
+                        data.forEach(schedule => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${schedule.schedule_id}</td>
+                                <td>${schedule.staff_id}</td>
+                                <td>${schedule.staff_name}</td>
+                                <td>${schedule.service_id}</td>
+                                <td>${schedule.service_name}</td>
+                                <td>${schedule.appointment_date}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary edit-schedule-button" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-schedule-id="${schedule.schedule_id}" data-staff-id="${schedule.staff_id}" data-service-id="${schedule.service_id}" data-staff-name="${schedule.staff_name}" data-service-name="${schedule.service_name}" data-appointment-date="${schedule.appointment_date}">Edit Schedule</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                        addEditScheduleButtonEventListeners();
+                    })
+                    .catch(error => console.error('Error fetching schedules:', error));
+            });
+
+            // Function to add event listeners to the Edit Schedule buttons
+            function addEditScheduleButtonEventListeners() {
+                document.querySelectorAll('.edit-schedule-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const scheduleId = this.getAttribute('data-schedule-id');
+                        const staffId = this.getAttribute('data-staff-id');
+                        const serviceId = this.getAttribute('data-service-id');
+                        const staffName = this.getAttribute('data-staff-name');
+                        const serviceName = this.getAttribute('data-service-name');
+                        const appointmentDate = this.getAttribute('data-appointment-date');
+
+                        // Populate modal fields with the selected schedule data
+                        document.getElementById('schedule-id').value = scheduleId;
+                        document.getElementById('staff-id').value = staffId;
+                        document.getElementById('service-id').value = serviceId;
+                        document.getElementById('service-name').value = serviceName;
+                        document.getElementById('appointment-date').value = appointmentDate;
+
+                        // Fetch and populate staff names with search functionality
+                        fetchStaffNames(staffId);
+                    });
+                });
+            }
+
+            // Fetch staff names from the server with search functionality
+            async function fetchStaffNames(selectedStaffId) {
+                try {
+                    const response = await fetch('/admin/get/staff-names');
+                    const data = await response.json();
+
+                    if (response.ok) {
                         const staffSelect = document.getElementById('staff-name');
-                        staffSelect.innerHTML = '';
-                        staffNames.forEach(staff => {
+                        staffSelect.innerHTML = ''; // Clear existing options
+
+                        data.forEach(staff => {
                             const option = document.createElement('option');
                             option.value = staff.staff_id;
-                            option.text = staff.staff_name;
-                            if (staff.staff_name === staffName) {
+                            option.textContent = staff.full_name;
+                            if (staff.staff_id === selectedStaffId) {
                                 option.selected = true;
                             }
                             staffSelect.appendChild(option);
                         });
-                    })
-                    .catch(error => console.error('Error fetching staff names:', error));
 
-                // Fetch and populate service names
-                fetch('/admin/get/service-names')
-                    .then(response => response.json())
-                    .then(serviceNames => {
-                        const serviceSelect = document.getElementById('service-name');
-                        serviceSelect.innerHTML = '';
-                        serviceNames.forEach(service => {
-                            const option = document.createElement('option');
-                            option.value = service.service_id;
-                            option.text = service.service_name;
-                            if (service.service_name === serviceName) {
-                                option.selected = true;
-                            }
-                            serviceSelect.appendChild(option);
+                        // Add search functionality to the staff select dropdown
+                        $('#staff-name').select2({
+                            placeholder: 'Select a staff member',
+                            allowClear: true
                         });
-                    })
-                    .catch(error => console.error('Error fetching service names:', error));
+                    } else {
+                        console.error('Failed to fetch staff names:', data.message);
+                        showResponseMessage('Failed to load staff names. Please try again later.', 'danger');
+                    }
+                } catch (error) {
+                    console.error('Error fetching staff names:', error);
+                    showResponseMessage('Error fetching staff names. Please check your connection.', 'danger');
+                }
+            }
+
+            // Function to display messages to the user
+            function showResponseMessage(message, type) {
+                const responseMessage = document.createElement('div');
+                responseMessage.className = `alert alert-${type}`;
+                responseMessage.textContent = message;
+                document.body.appendChild(responseMessage);
+                setTimeout(() => {
+                    responseMessage.remove();
+                }, 3000);
+            }
+
+            // Event listener for save changes button
+            document.getElementById('save-schedule-changes-btn').addEventListener('click', function() {
+                const scheduleId = document.getElementById('schedule-id').value;
+                const staffId = document.getElementById('staff-name').value;
+                const appointmentDate = document.getElementById('appointment-date').value;
+
+                // Prepare data to send to the server
+                const updatedSchedule = {
+                    schedule_id: scheduleId,
+                    staff_id: staffId,
+                    appointment_date: appointmentDate
+                };
+
+                // Send the updated data to the server
+                fetch(`/admin/update/schedule`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedSchedule)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Schedule updated successfully!');
+                        // Refresh or update the schedule list to reflect changes
+                        location.reload(); // Alternatively, update the schedule list without reloading
+                    } else {
+                        alert('Failed to update schedule. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error updating schedule:', error));
             });
         });
-    }
-
-    // Event listener for save changes button
-    document.getElementById('save-schedule-changes-btn').addEventListener('click', function() {
-        const scheduleId = document.getElementById('schedule-id').value;
-        const staffId = document.getElementById('staff-name').value;
-        const serviceId = document.getElementById('service-name').value;
-        const appointmentDate = document.getElementById('appointment-date').value;
-
-        // Prepare data to send to the server
-        const updatedSchedule = {
-            schedule_id: scheduleId,
-            staff_id: staffId,
-            service_id: serviceId,
-            appointment_date: appointmentDate
-        };
-
-        // Send the updated data to the server
-        fetch(`/admin/update/schedule`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedSchedule)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Schedule updated successfully!');
-                // Refresh or update the schedule list to reflect changes
-                location.reload(); // Alternatively, update the schedule list without reloading
-            } else {
-                alert('Failed to update schedule. Please try again.');
-            }
-        })
-        .catch(error => console.error('Error updating schedule:', error));
-    });
-});
 
 
         document.getElementById('search-notification').addEventListener('input', function() {
@@ -1128,26 +1151,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         document.getElementById('search-client').addEventListener('input', function() {
-            const query = this.value;
-            fetch(`/admin/search/client?query=${query}`)
+        const query = this.value;
+        fetch(`/admin/search/client?query=${query}`)
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.getElementById('client-table-body');
                 tableBody.innerHTML = '';
+                
                 data.forEach(client => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${client.full_name}</td>
-                    <td>${client.user_id}</td>
-                    <td>${client.client_id}</td>
-                    <td>${client.contact_number}</td>
-                    <td>${client.date_of_birth}</td>
-                `;
-                tableBody.appendChild(row);
+                    const row = document.createElement('tr');
+                    
+                    // Append all client details to row
+                    row.innerHTML = `
+                        <td>${client.client_id}</td>
+                        <td>${client.full_name}</td>
+                        <td>${client.user_id}</td>
+                        <td>${client.contact_number}</td>
+                        <td>${client.email}</td>
+                        <td>${client.gender}</td>
+                        <td>${client.insurance}</td>
+                        <td>${client.marital_status}</td>
+                        <td>${client.occupation}</td>
+                        <td>${client.address_country}</td>
+                        <td>${client.address_district}</td>
+                        <td>${client.address_sector}</td>
+                        <td>${client.address_village}</td>
+                        <td>${client.address_cell}</td>
+                    `;
+                    
+                    // Append row to table body
+                    tableBody.appendChild(row);
                 });
             })
             .catch(error => console.error('Error fetching clients:', error));
-        });
+    });
 
         document.getElementById('createStaffBtn').addEventListener('click', function() {
             // Collect the form data
@@ -1301,7 +1338,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
 
+
+</div></form></div>

@@ -91,21 +91,52 @@
         .footer p {
             font-size: 14px;
         }
+
+        /* Flash message styles */
+        .flash-message {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .flash-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .flash-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
     </style>
 </head>
 <body>
-   <!-- Navigation Bar -->
-   <nav class="navbar">
-    <ul class="navbar-list">
-        <li class="navbar-item"><a href="/">Home</a></li>
-        <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
-        <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
-        <li class="navbar-item"><a href="/about">About</a></li>
-    </ul>
-</nav>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="/">Home</a></li>
+            <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
+            <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
+            <li class="navbar-item"><a href="/about">About</a></li>
+        </ul>
+    </nav>
 
     <div class="content">
         <h1>Sign Up</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
         <div class="signup-form">
             <form action="/client/signup" method="post">
                 <input type="text" name="username" placeholder="Username" required><br>
@@ -117,18 +148,6 @@
             </form>
             <p>Already have an account? <a href="/client">Log in here</a></p>
         </div>
-    </div>
-
-    <div class="flash-messages">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li class="flash-message">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
     </div>
 
     <!-- Footer -->
@@ -144,14 +163,14 @@
             var signupButton = document.getElementById("signup_button");
 
             if (password !== confirmPassword) {
-        message.innerHTML = "Passwords do not match!";
-        message.style.color = "red";
-        signupButton.disabled = true;
-    } else {
-        message.innerHTML = "Passwords match!";
-        message.style.color = "green";
-        signupButton.disabled = false;
-    }
+                message.innerHTML = "Passwords do not match!";
+                message.style.color = "red";
+                signupButton.disabled = true;
+            } else {
+                message.innerHTML = "Passwords match!";
+                message.style.color = "green";
+                signupButton.disabled = false;
+            }
         }
     </script>
 

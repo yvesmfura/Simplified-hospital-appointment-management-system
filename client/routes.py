@@ -26,17 +26,21 @@ def client_auth():
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
 
-        if user and check_password_hash(user.password, password):
-            if user.role == UserRole.CLIENT.value:
-                session['user_id'] = user.user_id
-                session['role'] = user.role
-                return redirect(url_for('client.client_dashboard'))
+        if user:
+            if check_password_hash(user.password, password):
+                if user.role == UserRole.CLIENT.value:
+                    session['user_id'] = user.user_id
+                    session['role'] = user.role
+                    return redirect(url_for('client.client_dashboard'))
+                else:
+                    flash('Access denied. Please log in through the correct portal.', 'error')
             else:
-                flash('Access denied. Please log in through the correct portal.', 'error')
-                return render_template('client/clientlogin.html')
+                flash('Invalid password. Please try again.', 'error')
         else:
             flash('Invalid email or password. Please try again.', 'error')
-            return render_template('client/clientlogin.html')
+        
+        return render_template('client/clientlogin.html')
+    
     return render_template('client/clientlogin.html')
 
 # Accessing the CLIENT portal dashboard
@@ -59,11 +63,13 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         
-        existing_user = User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first()
+        # Check if the email already exists in the database
+        existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('Username or email already exists.', 'error')
+            flash('Email already exists.', 'error')
             return render_template('client/signup.html')
         
+        # If the email does not exist, create a new user
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, email=email, password=hashed_password, role='client')
         db.session.add(new_user)
@@ -343,4 +349,4 @@ def store_feedback():
             db.session.rollback()
             flash(f'Error submitting feedback: {str(e)}', 'error')
 
-        return redirect(url_for('staff.staff_dashboard'))
+        return redirect(url_for('client.client_dashboard'))
