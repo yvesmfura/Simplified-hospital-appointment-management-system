@@ -20,6 +20,7 @@ header {
 
 header .logo img {
     height: 40px;
+    width: auto; /* Ensure logo scales properly */
 }
 
 header .navs ul {
@@ -27,6 +28,7 @@ header .navs ul {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center; /* Center items vertically */
 }
 
 header .navs ul li {
@@ -37,7 +39,7 @@ header .navs ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    padding: 8px 15px;
+    padding: 10px 15px; /* Increased padding for better touch area */
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -57,7 +59,7 @@ header .navs ul li a:hover {
 }
 
 h2 {
-    color: green;
+    color: #007bff; /* Updated heading color to match header */
     margin-bottom: 20px;
     font-weight: bold;
 }
@@ -89,7 +91,7 @@ h2 {
 
 .service-details .service-name {
     font-weight: bold;
-    color: black;
+    color: #333; /* Adjusted text color for better contrast */
 }
 
 .service-details .service-id {
@@ -103,15 +105,17 @@ h2 {
         text-align: center;
     }
 
-    .navs ul {
+    header .navs ul {
         flex-direction: column;
+        align-items: center; /* Center items vertically */
     }
 
-    .navs ul li {
+    header .navs ul li {
         margin: 10px 0;
     }
 
     .service-item {
+        padding: 15px;
         flex-direction: column;
         align-items: flex-start;
     }
