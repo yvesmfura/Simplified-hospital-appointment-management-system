@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,32 +9,35 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul class="navbar-list">
-            <li class="navbar-item"><a href="/">Home</a></li>
-            <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
-            <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
-            <li class="navbar-item"><a href="/about">About</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="/">Home</a></li>
+                <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
+                <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
+                <li class="navbar-item"><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="content">
+    <main class="content">
         <h1>Welcome to SHAMS</h1>
         <a href="/client">Login</a>
         <a href="/signuppage">Sign Up</a>
-    </div>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="social-media">
-            <a href="https://facebook.com/shams" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/shams" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="https://linkedin.com/company/shams" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://instagram.com/shams" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/shams" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/shams" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/company/shams" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com/shams" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="contact-support">
-            <p>Contact Us: info@shams.com</p>
-            <p>Support: support@shams.com</p>
+            <p>Contact Us: <a href="mailto:info@shams.com">info@shams.com</a></p>
+            <p>Support: <a href="mailto:support@shams.com">support@shams.com</a></p>
         </div>
         <div class="copyright">
             <p>&copy; 2024 SHAMS. All Rights Reserved.</p>
