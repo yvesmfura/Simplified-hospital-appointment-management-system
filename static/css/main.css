@@ -35,9 +35,11 @@ body {
     color: white;
     font-size: 18px;
 }
+
 .navbar-item a:hover {
     text-decoration: underline;
 }
+
 /* Main Content */
 .content {
     text-align: center;
@@ -81,7 +83,40 @@ body {
     font-size: 14px;
 }
 
-.copyright {
-    font-size: 12px;
-    margin-top: 10px;
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    /* Adjust styles for screens smaller than 768px */
+    .navbar-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-item {
+        margin: 10px 0;
+    }
+
+    .content h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .content a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Adjust styles for screens smaller than 480px */
+    .navbar-item {
+        margin: 5px 0;
+    }
+
+    .content h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .content a {
+        font-size: 14px;
+    }
 }
