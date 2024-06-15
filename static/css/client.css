@@ -101,20 +101,6 @@ body {
     border-radius: 8px;
 }
 
-.patient_profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#patient_img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 .nav_links ul {
     padding: 0;
