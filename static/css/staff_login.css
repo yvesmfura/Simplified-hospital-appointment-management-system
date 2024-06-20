@@ -29,7 +29,7 @@
             font-size: 18px;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-weight: 500;
+            font-weight: bold;
         }
         .navbar-item a:hover {
             text-decoration: underline;

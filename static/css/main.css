@@ -34,7 +34,7 @@ body {
 .navbar-item a {
     color: white;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
 }
 .navbar-item a:hover {
     text-decoration: underline;
