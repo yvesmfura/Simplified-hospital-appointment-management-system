@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - SHAMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <style>
         body, h1, h2, h3, p, input, textarea, button {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
             background-color: #f0f0f0;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -27,19 +30,21 @@
             align-items: center;
         }
 
+
         .navbar-list {
             list-style: none;
             display: flex;
         }
 
         .navbar-item {
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         .navbar-item a {
             color: white;
             font-size: 18px;
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
         }
 
@@ -48,96 +53,113 @@
         }
 
         .content {
-            padding: 50px;
+            padding: 50px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .content h1 {
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 20px;
             color: #007bff;
-            text-align: center;
+            font-weight: 600;
         }
 
         .description {
             margin-bottom: 50px;
-            text-align: center;
             font-size: 18px;
             color: #555;
+            line-height: 1.8;
+            text-align: justify;
         }
 
         .developers {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
             margin-bottom: 50px;
+            padding: 0 20px;
         }
 
         .developer {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 0 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 250px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .developer:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         }
 
         .developer h2 {
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 10px;
+            color: #333;
+            font-weight: 500;
         }
 
         .developer p {
             margin-bottom: 20px;
-            font-size: 14px;
+            font-size: 16px;
             color: #777;
         }
 
         .social-media {
+            display: flex;
+            justify-content: center;
             margin-top: 15px;
         }
 
         .social-media a {
             margin: 0 10px;
-            font-size: 20px;
-            color: #333;
+            font-size: 22px;
+            color: #007bff;
             transition: color 0.3s ease;
         }
 
         .social-media a:hover {
-            color: #007bff;
+            color: #ffdd57;
         }
 
         .feedback-form {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .feedback-form h2 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
-            text-align: center;
+            color: #007bff;
+            font-weight: 600;
         }
 
         .feedback-form input, .feedback-form textarea {
             width: calc(100% - 20px);
-            padding: 10px;
+            padding: 15px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 16px;
         }
 
         .feedback-form button {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
             font-size: 18px;
+            font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -150,19 +172,24 @@
             max-width: 800px;
             margin: 50px auto;
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
 
         .user-story h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 15px;
             color: #007bff;
+            font-weight: 500;
         }
 
-        .user-story p {
-            margin-bottom: 15px;
+        .user-story p, .user-story ol, .user-story ul {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
         }
 
         footer {
@@ -172,6 +199,88 @@
             text-align: center;
             margin-top: 50px;
         }
+
+        .flash-message {
+            display: none;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .user-story-selector {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-story-selector select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 32px;
+            }
+
+            .developers {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .developer h2 {
+                font-size: 20px;
+            }
+
+            .feedback-form h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-item a {
+                font-size: 16px;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .developer h2 {
+                font-size: 18px;
+            }
+
+            .user-story h3 {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 
@@ -180,20 +289,20 @@
     <nav class="navbar">
         <ul class="navbar-list">
             <li class="navbar-item"><a href="/">Home</a></li>
-            <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
             <li class="navbar-item"><a href="/staff">Staff Portal</a></li>
+            <li class="navbar-item"><a href="/admin">Admin Portal</a></li>
             <li class="navbar-item"><a href="/about">About</a></li>
         </ul>
     </nav>
-
 
     <!-- Main Content -->
     <div class="content">
         <h1>About Us</h1>
         <p class="description">
-            Our hospital appointment management system, SHAMS (Simplified Hospital Appointments Management System), revolutionizes healthcare accessibility by providing a seamless platform for scheduling medical appointments. With SHAMS, patients can easily book appointments for a wide range of medical services, from dental care to ophthalmology, through a user-friendly interface. The system intelligently assigns appropriate doctors based on the selected service, ensuring patients receive specialized care tailored to their needs. Additionally, doctors benefit from efficient schedule management tools, allowing them to plan their appointments, block off time for breaks, and reschedule as necessary. Administrators have comprehensive oversight, managing user roles, monitoring system performance, and ensuring smooth operation. SHAMS streamlines the appointment process, reduces wait times, and enhances the overall efficiency of healthcare delivery.
+            Our hospital appointment management system, SHAMS (Simplified Hospital Appointments Management System), revolutionizes healthcare accessibility by providing a seamless platform for scheduling medical appointments. With SHAMS, patients can easily book appointments for a wide range of medical services, from dental care to ophthalmology, through a user-friendly interface. The system intelligently assigns appropriate doctors based on the selected service, ensuring patients receive specialized care tailored to their needs. Additionally, doctors benefit from efficient schedule management tools, allowing them to plan their appointments, block off time for breaks, and reschedule as necessary. Administrators have comprehensive oversight, managing user roles, monitoring system performance, and ensuring the smooth operation of hospital services. By leveraging SHAMS, our hospital optimizes patient-doctor interactions, reduces wait times, and enhances the overall efficiency of healthcare delivery.
         </p>
 
+        <!-- Developers Section -->
         <div class="developers">
             <div class="developer">
                 <h2>Yves IRAKOZE MFURA</h2>
@@ -201,14 +310,14 @@
                 <div class="social-media">
                     <a href="https://facebook.com/yves.irakoze.mfura" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://twitter.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="https://rw.linkedin.com/in/yves-irakoze-mfura-203053252" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://linkedin.com/in/yves-irakoze-mfura" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://instagram.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/yvesmfura" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/yves_irakoze_mfura" class="social-icon"><i class="fab fa-github"></i></a>
                     <a href="mailto:mfurayves25@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div class="developer">
-                <h2>TWAYINGANYIKI Leonce promus</h2>
+                <h2>TWAYINGANYIKI Leonce Promus</h2>
                 <p>Software Engineer</p>
                 <div class="social-media">
                     <a href="https://facebook.com/leonce.promus" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -221,17 +330,18 @@
             </div>
         </div>
 
-        <div class="feedback-form">
-            <h2>Feedback</h2>
-            <form action="/submit-feedback" method="post">
-                <input type="text" name="name" placeholder="Your Name" required><br>
-                <input type="email " name="email" placeholder="Your Email" required><br>
-                <textarea name="message" placeholder="Your Feedback" rows="5" required></textarea><br>
-                <button type="submit">Submit Feedback</button>
-            </form>
+        <!-- User Story Selector -->
+        <div class="user-story-selector">
+            <label for="story-select">Select User Story:</label>
+            <select id="story-select" onchange="displayUserStory()">
+                <option value="client">Client</option>
+                <option value="doctor">Doctor</option>
+                <option value="admin">Admin</option>
+            </select>
         </div>
 
-        <div class="user-story">
+        <!-- User Stories -->
+        <div id="client-story" class="user-story" style="display: none;">
             <h3>User Story 1: Booking an Appointment with Service Selection</h3>
             <p><strong>As a:</strong> Patient<br>
             <strong>Name:</strong> Mr. Murenzi Andrew<br>
@@ -257,7 +367,7 @@
             </ul>
         </div>
 
-        <div class="user-story">
+        <div id="doctor-story" class="user-story" style="display: none;">
             <h3>User Story 2: Managing Doctor Schedule</h3>
             <p><strong>As a:</strong> Doctor<br>
             <strong>Name:</strong> Dr. UWINEZA Ange<br>
@@ -279,7 +389,7 @@
             </ul>
         </div>
 
-        <div class="user-story">
+        <div id="admin-story" class="user-story" style="display: none;">
             <h3>User Story 3: Administering the System</h3>
             <p><strong>As a:</strong> Admin<br>
             <strong>Name:</strong> Technician Ngoga Gerald<br>
@@ -306,11 +416,35 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 SHAMS. All Rights Reserved.</p>
+        <p>&copy; 2024 SHAMS. All rights reserved.</p>
     </footer>
+
+    <script>
+        function displayUserStory() {
+            const select = document.getElementById('story-select');
+            const clientStory = document.getElementById('client-story');
+            const doctorStory = document.getElementById('doctor-story');
+            const adminStory = document.getElementById('admin-story');
+
+            clientStory.style.display = 'none';
+            doctorStory.style.display = 'none';
+            adminStory.style.display = 'none';
+
+            if (select.value === 'client') {
+                clientStory.style.display = 'block';
+            } else if (select.value === 'doctor') {
+                doctorStory.style.display = 'block';
+            } else if (select.value === 'admin') {
+                adminStory.style.display = 'block';
+            }
+        }
+
+        // Initialize the first story to display
+        document.addEventListener('DOMContentLoaded', () => {
+            displayUserStory();
+        });
+    </script>
 </body>
 
 </html>
-
