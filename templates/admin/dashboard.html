@@ -161,7 +161,9 @@
                 <div class="search-bar">
                     <input type="text" id="search-schedule" placeholder="Search by Appointment Date">
                     <i class="fas fa-search"></i>
-                    
+                    <button type="button" class="btn btn-primary" onclick="location.href='/create/schedule'">
+                        Create New Schedule
+                    </button>
                 </div>
                 <div class="table-container">
                     <table>
@@ -296,6 +298,8 @@
 
         </main>
     </div>
+
+
     <!--MODALS-->
 
     <!-- Edit User Modal -->
@@ -362,41 +366,41 @@
     </div>
 
    <!-- Edit Staff Modal -->
-<div class="modal fade" id="editStaffModal" tabindex="-1" aria-labelledby="editStaffModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editStaffModalLabel">Edit Staff</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="edit-staff-form">
-                    <div class="mb-3">
-                        <label for="staff-id" class="col-form-label">Staff ID:</label>
-                        <input type="text" class="form-control" id="staff-id" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="staff-name" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="staff-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="staff-specialization" class="col-form-label">Specialization:</label>
-                        <input type="text" class="form-control" id="staff-specialization">
-                    </div>
-                    <div class="mb-3">
-                        <label for="staff-contact" class="col-form-label">Contact:</label>
-                        <input type="text" class="form-control" id="staff-contact">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="update-staff-button">Update Staff</button>
+    <div class="modal fade" id="editStaffModal" tabindex="-1" aria-labelledby="editStaffModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editStaffModalLabel">Edit Staff</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-staff-form">
+                        <div class="mb-3">
+                            <label for="staff-id" class="col-form-label">Staff ID:</label>
+                            <input type="text" class="form-control" id="staff-id" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="staff-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff-specialization" class="col-form-label">Specialization:</label>
+                            <input type="text" class="form-control" id="staff-specialization">
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff-contact" class="col-form-label">Contact:</label>
+                            <input type="text" class="form-control" id="staff-contact">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="update-staff-button">Update Staff</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End of Edit Staff Modal -->
+    <!-- End of Edit Staff Modal -->
 
 
     <!-- Create New Staff Modal -->
@@ -451,6 +455,11 @@
                             <label for="new-staff-confirm-password" class="col-form-label">Confirm Password:</label>
                             <input type="password" class="form-control" id="new-staff-confirm-password" required>
                         </div>
+                        <!-- Show Password -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="show_staff_Password">
+                            <label class="form-check-label" for="showPassword">Show Password</label>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -477,25 +486,31 @@
                             <input type="text" class="form-control" id="new-user-username" required>
                         </div>
                         <div class="mb-3">
-                            <label for="new-user-password" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="new-user-password" required>
+                            <label for="new-user-email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="new-user-email" required>
                         </div>
                         <div class="mb-3">
                             <label for="new-user-role" class="col-form-label">Role:</label>
                             <select class="form-select" id="new-user-role" required>
                                 <option value="admin">Admin</option>
+                                <!-- Add more roles as needed -->
                             </select>
                         </div>
-                                         <!-- Password -->
-                    <div class="mb-3">
-                        <label for="new-staff-password" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="new-staff-password" required>
-                    </div>
-                    <!-- Confirm Password -->
-                    <div class="mb-3">
-                        <label for="new-staff-confirm-password" class="col-form-label">Confirm Password:</label>
-                        <input type="password" class="form-control" id="new-staff-confirm-password" required>
-                    </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="new-user-password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="new-user-password" required>
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="new-user-confirm-password" class="col-form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="new-user-confirm-password" required>
+                        </div>
+                        <!-- Show Password -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="show_user_Password">
+                            <label class="form-check-label" for="showPassword">Show Password</label>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -509,113 +524,115 @@
     <!-- Edit Service Modal -->
     <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="editServiceModalLabel">Edit Service</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="service-name" class="col-form-label">Service Name:</label>
-                  <input type="text" class="form-control" id="service-name">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                  <label for="service-head" class="col-form-label">Head:</label>
-                  <input type="text" class="form-control" id="service-head">
+                <div class="modal-body">
+                    <form id="editServiceForm">
+                        <input type="hidden" id="edit-service-id"> <!-- Hidden field for service ID -->
+                        <div class="mb-3">
+                            <label for="edit-service-name" class="form-label">Service Name:</label>
+                            <input type="text" class="form-control" id="edit-service-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-service-head" class="form-label">Head of Service:</label>
+                            <input type="text" class="form-control" id="edit-service-head" required>
+                        </div>
+                    </form>
                 </div>
-              </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateServiceBtn">Update Service</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Update</button>
-            </div>
-          </div>
         </div>
-      </div>
-    <!-- End of Edit Service Modal -->
+    </div>
 
-    <!-- Create New Service Modal -->
-    <div class="modal fade" id="createNewServiceModal" tabindex="-1" aria-labelledby="createNewServiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+<!-- Create New Service Modal -->
+<div class="modal fade" id="createNewServiceModal" tabindex="-1" aria-labelledby="createNewServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="createNewServiceModalLabel">Create New Service</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="createNewServiceModalLabel">Create New Service</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="new-service-name" class="col-form-label">Service Name:</label>
-                  <input type="text" class="form-control" id="new-service-name">
-                </div>
-                <div class="mb-3">
-                  <label for="new-service-head" class="col-form-label">Head:</label>
-                  <input type="text" class="form-control" id="new-service-head">
-                </div>
-              </form>
+                <form>
+                    <div class="mb-3">
+                        <label for="new-service-name" class="col-form-label">Service Name:</label>
+                        <input type="text" class="form-control" id="new-service-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="new-service-head" class="col-form-label">Head:</label>
+                        <input type="text" class="form-control" id="new-service-head">
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="createServiceBtn">Create</button>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
     <!-- End of Create New Service Modal -->
 
 
-   <!-- Add New Insurance Modal -->
-<div class="modal fade" id="addNewInsuranceModal" tabindex="-1" aria-labelledby="addNewInsuranceModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addNewInsuranceModalLabel">Add New Insurance</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="new-insurance-name" class="col-form-label">Insurance Name:</label>
-                        <input type="text" class="form-control" id="new-insurance-name">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="add-insurance-button">Add</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Edit Insurance Modal -->
-<div class="modal fade" id="editInsuranceModal" tabindex="-1" aria-labelledby="editInsuranceModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editInsuranceModalLabel">Edit Insurance</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="edit-insurance-name" class="col-form-label">Insurance Name:</label>
-                        <input type="text" class="form-control" id="edit-insurance-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-insurance-id" class="col-form-label">Insurance ID:</label>
-                        <input type="text" class="form-control" id="edit-insurance-id" readonly>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="update-insurance-button">Update</button>
+   <!-- Add New Insurance Modal -->
+    <div class="modal fade" id="addNewInsuranceModal" tabindex="-1" aria-labelledby="addNewInsuranceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addNewInsuranceModalLabel">Add New Insurance</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="new-insurance-name" class="col-form-label">Insurance Name:</label>
+                            <input type="text" class="form-control" id="new-insurance-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-insurance-button">Add</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Edit Insurance Modal -->
+    <div class="modal fade" id="editInsuranceModal" tabindex="-1" aria-labelledby="editInsuranceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editInsuranceModalLabel">Edit Insurance</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="edit-insurance-name" class="col-form-label">Insurance Name:</label>
+                            <input type="text" class="form-control" id="edit-insurance-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-insurance-id" class="col-form-label">Insurance ID:</label>
+                            <input type="text" class="form-control" id="edit-insurance-id" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="update-insurance-button">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--Logout modal-->
    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
@@ -647,54 +664,48 @@
           </div>
    </div>
 
-<!-- Edit Schedule Modal -->
-<div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editScheduleModalLabel">Edit Schedule</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="edit-schedule-form">
-                    <div class="mb-3">
-                        <label for="service-name" class="col-form-label">Service Name:</label>
-                        <input type="text" class="form-control" id="service-name" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="service-id" class="col-form-label">Service ID:</label>
-                        <input type="text" class="form-control" id="service-id" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="staff-id" class="col-form-label">Staff ID:</label>
-                        <input type="text" class="form-control" id="staff-id" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="staff-name" class="col-form-label">Staff Name:</label>
-                        <select class="form-control" id="staff-name">
-                            <!-- Options will be populated dynamically -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="appointment-date" class="col-form-label">Appointment Date:</label>
-                        <input type="date" class="form-control" id="appointment-date">
-                        <input type="hidden" id="schedule-id">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-schedule-changes-btn">Save Changes</button>
+    <!-- Edit Schedule Modal -->
+    <div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editScheduleModalLabel">Edit Schedule</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-schedule-form">
+                        <div class="mb-3">
+                            <label for="service-name" class="col-form-label">Service Name:</label>
+                            <input type="text" class="form-control" id="service-name" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="service-id" class="col-form-label">Service ID:</label>
+                            <input type="text" class="form-control" id="service-id" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="staff-name" class="col-form-label">Staff Name:</label>
+                            <select class="form-control" id="staff-name">
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointment-date" class="col-form-label">Appointment Date:</label>
+                            <input type="date" class="form-control" id="appointment-date">
+                            <input type="hidden" id="schedule-id">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-schedule-changes-btn">Save Changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End of Edit Schedule Modal -->
-
+    <!-- End of Edit Schedule Modal -->
 
     <div class="footer">
         <p class="text-secondary"> &copy;copyright SHAS, May 2024</p>
-   
     </div>
           
     
@@ -791,6 +802,56 @@
             .catch(error => console.error('Error:', error));
         });
 
+        document.getElementById('createUserBtn').addEventListener('click', function() {
+            // Collect the form data
+            const username = document.getElementById('new-user-username').value;
+            const email = document.getElementById('new-user-email').value;
+            const password = document.getElementById('new-user-password').value;
+            const role = document.getElementById('new-user-role').value;
+            
+            // Password confirmation
+            const confirmPassword = document.getElementById('new-user-confirm-password').value;
+
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Create the data object to send
+            const userData = {
+                username: username,
+                email: email,
+                password: password,
+                role: role
+            };
+
+            // Send the data to the backend
+            fetch('/admin/create/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('User created successfully!');
+                    // Optionally close the modal or perform other actions
+                    const createUserModal = new bootstrap.Modal(document.getElementById('createNewUserModal'));
+                    createUserModal.hide();
+                    // You might also want to reset the form or reload the page
+                    document.getElementById('createNewUserForm').reset();
+                } else {
+                    alert('Error creating user: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error creating user:', error));
+
+        });
+
+
         document.getElementById('search-staff').addEventListener('input', function() {
             const query = this.value;
             fetch(`/admin/search/staff?query=${query}`)
@@ -812,22 +873,22 @@
                         tableBody.appendChild(row);
                     });
 
-                    document.querySelectorAll('.edit-staff').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const staffId = this.getAttribute('data-staff-id');
-                            fetch(`/admin/get/staff/${staffId}`)
-                                .then(response => response.json())
-                                .then(staff => {
-                                    document.getElementById('staff-id').value = staff.staff_id;
-                                    document.getElementById('staff-name').value = staff.full_name;
-                                    document.getElementById('staff-specialization').value = staff.specialization;
-                                    document.getElementById('staff-contact').value = staff.contact_number;
-                                    document.getElementById('update-staff-button').setAttribute('data-staff-id', staffId);
-                                })
-                                .catch(error => console.error('Error fetching staff details:', error));
-                        });
+                document.querySelectorAll('.edit-staff').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const staffId = this.getAttribute('data-staff-id');
+                        fetch(`/admin/get/staff/${staffId}`)
+                            .then(response => response.json())
+                            .then(staff => {
+                                document.getElementById('staff-id').value = staff.staff_id;
+                                document.getElementById('staff-name').value = staff.full_name;
+                                document.getElementById('staff-specialization').value = staff.specialization;
+                                document.getElementById('staff-contact').value = staff.contact_number;
+                                document.getElementById('update-staff-button').setAttribute('data-staff-id', staffId);
+                            })
+                            .catch(error => console.error('Error fetching staff details:', error));
                     });
-                })
+                });
+            })
                 .catch(error => console.error('Error fetching staff:', error));
         });
 
@@ -944,141 +1005,6 @@
         });
 
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Event listener for search input to fetch schedules dynamically
-            document.getElementById('search-schedule').addEventListener('input', function() {
-                const query = this.value;
-                fetch(`/admin/search/schedule?query=${query}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const tableBody = document.getElementById('schedule-table-body');
-                        tableBody.innerHTML = '';
-                        data.forEach(schedule => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${schedule.schedule_id}</td>
-                                <td>${schedule.staff_id}</td>
-                                <td>${schedule.staff_name}</td>
-                                <td>${schedule.service_id}</td>
-                                <td>${schedule.service_name}</td>
-                                <td>${schedule.appointment_date}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit-schedule-button" data-bs-toggle="modal" data-bs-target="#editScheduleModal" data-schedule-id="${schedule.schedule_id}" data-staff-id="${schedule.staff_id}" data-service-id="${schedule.service_id}" data-staff-name="${schedule.staff_name}" data-service-name="${schedule.service_name}" data-appointment-date="${schedule.appointment_date}">Edit Schedule</button>
-                                </td>
-                            `;
-                            tableBody.appendChild(row);
-                        });
-                        addEditScheduleButtonEventListeners();
-                    })
-                    .catch(error => console.error('Error fetching schedules:', error));
-            });
-
-            // Function to add event listeners to the Edit Schedule buttons
-            function addEditScheduleButtonEventListeners() {
-                document.querySelectorAll('.edit-schedule-button').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const scheduleId = this.getAttribute('data-schedule-id');
-                        const staffId = this.getAttribute('data-staff-id');
-                        const serviceId = this.getAttribute('data-service-id');
-                        const staffName = this.getAttribute('data-staff-name');
-                        const serviceName = this.getAttribute('data-service-name');
-                        const appointmentDate = this.getAttribute('data-appointment-date');
-
-                        // Populate modal fields with the selected schedule data
-                        document.getElementById('schedule-id').value = scheduleId;
-                        document.getElementById('staff-id').value = staffId;
-                        document.getElementById('service-id').value = serviceId;
-                        document.getElementById('service-name').value = serviceName;
-                        document.getElementById('appointment-date').value = appointmentDate;
-
-                        // Fetch and populate staff names with search functionality
-                        fetchStaffNames(staffId);
-                    });
-                });
-            }
-
-            // Fetch staff names from the server with search functionality
-            async function fetchStaffNames(selectedStaffId) {
-                try {
-                    const response = await fetch('/admin/get/staff-names');
-                    const data = await response.json();
-
-                    if (response.ok) {
-                        const staffSelect = document.getElementById('staff-name');
-                        staffSelect.innerHTML = ''; // Clear existing options
-
-                        data.forEach(staff => {
-                            const option = document.createElement('option');
-                            option.value = staff.staff_id;
-                            option.textContent = staff.full_name;
-                            if (staff.staff_id === selectedStaffId) {
-                                option.selected = true;
-                            }
-                            staffSelect.appendChild(option);
-                        });
-
-                        // Add search functionality to the staff select dropdown
-                        $('#staff-name').select2({
-                            placeholder: 'Select a staff member',
-                            allowClear: true
-                        });
-                    } else {
-                        console.error('Failed to fetch staff names:', data.message);
-                        showResponseMessage('Failed to load staff names. Please try again later.', 'danger');
-                    }
-                } catch (error) {
-                    console.error('Error fetching staff names:', error);
-                    showResponseMessage('Error fetching staff names. Please check your connection.', 'danger');
-                }
-            }
-
-            // Function to display messages to the user
-            function showResponseMessage(message, type) {
-                const responseMessage = document.createElement('div');
-                responseMessage.className = `alert alert-${type}`;
-                responseMessage.textContent = message;
-                document.body.appendChild(responseMessage);
-                setTimeout(() => {
-                    responseMessage.remove();
-                }, 3000);
-            }
-
-            // Event listener for save changes button
-            document.getElementById('save-schedule-changes-btn').addEventListener('click', function() {
-                const scheduleId = document.getElementById('schedule-id').value;
-                const staffId = document.getElementById('staff-name').value;
-                const appointmentDate = document.getElementById('appointment-date').value;
-
-                // Prepare data to send to the server
-                const updatedSchedule = {
-                    schedule_id: scheduleId,
-                    staff_id: staffId,
-                    appointment_date: appointmentDate
-                };
-
-                // Send the updated data to the server
-                fetch(`/admin/update/schedule`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(updatedSchedule)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Schedule updated successfully!');
-                        // Refresh or update the schedule list to reflect changes
-                        location.reload(); // Alternatively, update the schedule list without reloading
-                    } else {
-                        alert('Failed to update schedule. Please try again.');
-                    }
-                })
-                .catch(error => console.error('Error updating schedule:', error));
-            });
-        });
-
-
         document.getElementById('search-notification').addEventListener('input', function() {
             const query = this.value;
             fetch(`/admin/search/notification?query=${query}`)
@@ -1151,40 +1077,40 @@
 
 
         document.getElementById('search-client').addEventListener('input', function() {
-        const query = this.value;
-        fetch(`/admin/search/client?query=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                const tableBody = document.getElementById('client-table-body');
-                tableBody.innerHTML = '';
-                
-                data.forEach(client => {
-                    const row = document.createElement('tr');
+            const query = this.value;
+            fetch(`/admin/search/client?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('client-table-body');
+                    tableBody.innerHTML = '';
                     
-                    // Append all client details to row
-                    row.innerHTML = `
-                        <td>${client.client_id}</td>
-                        <td>${client.full_name}</td>
-                        <td>${client.user_id}</td>
-                        <td>${client.contact_number}</td>
-                        <td>${client.email}</td>
-                        <td>${client.gender}</td>
-                        <td>${client.insurance}</td>
-                        <td>${client.marital_status}</td>
-                        <td>${client.occupation}</td>
-                        <td>${client.address_country}</td>
-                        <td>${client.address_district}</td>
-                        <td>${client.address_sector}</td>
-                        <td>${client.address_village}</td>
-                        <td>${client.address_cell}</td>
-                    `;
-                    
-                    // Append row to table body
-                    tableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error fetching clients:', error));
-    });
+                    data.forEach(client => {
+                        const row = document.createElement('tr');
+                        
+                        // Append all client details to row
+                        row.innerHTML = `
+                            <td>${client.client_id}</td>
+                            <td>${client.full_name}</td>
+                            <td>${client.user_id}</td>
+                            <td>${client.contact_number}</td>
+                            <td>${client.email}</td>
+                            <td>${client.gender}</td>
+                            <td>${client.insurance}</td>
+                            <td>${client.marital_status}</td>
+                            <td>${client.occupation}</td>
+                            <td>${client.address_country}</td>
+                            <td>${client.address_district}</td>
+                            <td>${client.address_sector}</td>
+                            <td>${client.address_village}</td>
+                            <td>${client.address_cell}</td>
+                        `;
+                        
+                        // Append row to table body
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching clients:', error));
+        });
 
         document.getElementById('createStaffBtn').addEventListener('click', function() {
             // Collect the form data
@@ -1265,82 +1191,310 @@
                 .catch(error => console.error('Error fetching staff:', error));
         }
    
-        document.getElementById('createUserBtn').addEventListener('click', function() {
-            // Collect the form data
-            const username = document.getElementById('new-user-username').value;
-            const password = document.getElementById('new-user-password').value;
-            const role = document.getElementById('new-user-role').value;
-    
-            // Password confirmation
-            const confirmPassword = document.getElementById('new-user-confirm-password').value;
-    
-            // Check if password and confirm password match
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
+
+        // Toggle user password visibility
+        document.getElementById('show_user_Password').addEventListener('change', function() {
+            var password = document.getElementById('new-user-password');
+            if (this.checked) {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
             }
-    
-            // Create the data object to send
-            const userData = {
-                username: username,
-                password: password,
-                role: role
-            };
-    
-            // Send the data to the backend
-            fetch('/admin/create/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('User created successfully!');
-                    // Optionally close the modal or perform other actions
-                    const createUserModal = new bootstrap.Modal(document.getElementById('createNewUserModal'));
-                    createUserModal.hide();
-                } else {
-                    alert('Error creating user: ' + data.message);
-                }
-            })
-            .catch(error => console.error('Error creating user:', error));
+        });
+        // Toggle staff password visibility
+        document.getElementById('show_staff_Password').addEventListener('change', function() {
+            var password = document.getElementById('new-staff-password');
+            if (this.checked) {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle Service Search
+            document.getElementById('search-service').addEventListener('input', function() {
+                const query = this.value;
+                fetch(`/admin/search/service?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('service-table-body');
+                        tableBody.innerHTML = '';
+                        data.forEach(service => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${service.name}</td>
+                                <td>${service.service_id}</td>
+                                <td>${service.head}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm edit-service" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-service-id="${service.service_id}">Edit</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
 
-        document.getElementById('search-service').addEventListener('input', function() {
-        const query = this.value;
-        fetch(`/admin/search/service?query=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                const tableBody = document.getElementById('service-table-body');
-                tableBody.innerHTML = '';
-                data.forEach(service => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${service.name}</td>
-                        <td>${service.service_id}</td>
-                        <td>${service.head}</td>
+                        document.querySelectorAll('.edit-service').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const serviceId = this.getAttribute('data-service-id');
+                                fetch(`/admin/get/service/${serviceId}`)
+                                    .then(response => response.json())
+                                    .then(service => {
+                                        document.getElementById('edit-service-id').value = service.service_id;
+                                        document.getElementById('edit-service-name').value = service.name;
+                                        document.getElementById('edit-service-head').value = service.head;
+                                        document.getElementById('updateServiceBtn').setAttribute('data-service-id', serviceId);
+                                    })
+                                    .catch(error => console.error('Error fetching service details:', error));
+                            });
+                        });
+                    })
+                    .catch(error => console.error('Error fetching services:', error));
+            });
 
-                        <td>
-                            <button class="action-btn edit-service" data-bs-toggle="modal" data-bs-target="#editServiceModal">Edit Service</button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
+            // Handle Update Service Button Click
+            document.getElementById('updateServiceBtn').addEventListener('click', function() {
+                const serviceId = document.getElementById('edit-service-id').value;
+                const updatedService = {
+                    service_id: serviceId,
+                    name: document.getElementById('edit-service-name').value,
+                    head: document.getElementById('edit-service-head').value,
+                };
+
+                fetch(`/admin/update_service`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedService),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Service updated successfully!');
+                        location.reload();
+                    } else {
+                        alert('Failed to update service');
+                    }
+                })
+                .catch(error => console.error('Error updating service:', error));
+            });
+
+            // Handle Create New Service Button Click
+            document.getElementById('createServiceBtn').addEventListener('click', function() {
+                const serviceName = document.getElementById('new-service-name').value;
+                const serviceHead = document.getElementById('new-service-head').value;
+
+                const serviceData = {
+                    name: serviceName,
+                    head: serviceHead
+                };
+
+                fetch('/admin/create/service', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(serviceData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Service created successfully!');
+                        const createServiceModal = new bootstrap.Modal(document.getElementById('createNewServiceModal'));
+                        createServiceModal.hide();
+
+                        fetchServiceList(); // Refresh the service list
+                    } else {
+                        alert('Error creating service: ' + data.message);
+                    }
+                })
+                .catch(error => console.error('Error creating service:', error));
+            });
+            // Close button in edit modal
+            document.getElementById('editServiceModal').addEventListener('hidden.bs.modal', function () {
+                // Clear form fields on modal close
+                document.getElementById('edit-service-id').value = '';
+                document.getElementById('edit-service-name').value = '';
+                document.getElementById('edit-service-head').value = '';
+            });
+
+            // Example function to refresh the service list
+            function fetchServiceList() {
+                fetch('/admin/get/service-list')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('service-table-body');
+                        tableBody.innerHTML = '';
+                        data.forEach(service => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${service.name}</td>
+                                <td>${service.service_id}</td>
+                                <td>${service.head}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm edit-service" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-service-id="${service.service_id}">Edit</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+
+                        document.querySelectorAll('.edit-service').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const serviceId = this.getAttribute('data-service-id');
+                                fetch(`/admin/get/service/${serviceId}`)
+                                    .then(response => response.json())
+                                    .then(service => {
+                                        document.getElementById('edit-service-id').value = service.service_id;
+                                        document.getElementById('edit-service-name').value = service.name;
+                                        document.getElementById('edit-service-head').value = service.head;
+                                        document.getElementById('updateServiceBtn').setAttribute('data-service-id', serviceId);
+                                    })
+                                    .catch(error => console.error('Error fetching service details:', error));
+                            });
+                        });
+                    })
+                    .catch(error => console.error('Error fetching services:', error));
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listener for search input to fetch schedules dynamically
+            document.getElementById('search-schedule').addEventListener('input', function() {
+                const query = this.value;
+                fetch(`/admin/search/schedule?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('schedule-table-body');
+                        tableBody.innerHTML = ''; // Clear existing rows
+                        data.forEach(schedule => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${schedule.schedule_id}</td>
+                                <td>${schedule.staff_id}</td>
+                                <td>${schedule.staff_name}</td>
+                                <td>${schedule.service_id}</td>
+                                <td>${schedule.service_name}</td>
+                                <td>${schedule.appointment_date}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary edit-schedule-button" data-bs-toggle="modal" data-bs-target="#editScheduleModal" 
+                                        data-schedule-id="${schedule.schedule_id}" 
+                                        data-staff-id="${schedule.staff_id}" 
+                                        data-service-id="${schedule.service_id}" 
+                                        data-staff-name="${schedule.staff_name}" 
+                                        data-service-name="${schedule.service_name}" 
+                                        data-appointment-date="${schedule.appointment_date}">Edit Schedule</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                        addEditScheduleButtonEventListeners();
+                    })
+                    .catch(error => console.error('Error fetching schedules:', error));
+            });
+
+            // Function to add event listeners to the Edit Schedule buttons
+            function addEditScheduleButtonEventListeners() {
+                document.querySelectorAll('.edit-schedule-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const { scheduleId, staffId, serviceId, staffName, serviceName, appointmentDate } = this.dataset;
+
+                        // Populate modal fields with the selected schedule data
+                        document.getElementById('schedule-id').value = scheduleId;
+                        document.getElementById('staff-id').value = staffId;
+                        document.getElementById('staff-name').value = staffName;
+                        document.getElementById('service-id').value = serviceId;
+                        document.getElementById('service-name').value = serviceName;
+                        document.getElementById('appointment-date').value = appointmentDate;
+
+                        // Fetch and populate staff names with search functionality
+                        fetchStaffNames(staffId);
+                    });
                 });
-            })
-            .catch(error => console.error('Error fetching services:', error));
-    });
+            }
 
-    </script>
+            // Fetch staff names from the server with search functionality
+            async function fetchStaffNames(selectedStaffId) {
+                try {
+                    const response = await fetch('/admin/get/staff-names');
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        const staffSelect = document.getElementById('staff-name');
+                        staffSelect.innerHTML = ''; // Clear existing options
+                        data.forEach(staff => {
+                            const option = document.createElement('option');
+                            option.value = staff.staff_id;
+                            option.textContent = staff.full_name;
+                            if (staff.staff_id === selectedStaffId) {
+                                option.selected = true;
+                            }
+                            staffSelect.appendChild(option);
+                        });
+
+                        // Add search functionality to the staff select dropdown
+                        $('#staff-name').select2({
+                            placeholder: 'Select a staff member',
+                            allowClear: true
+                        });
+                    } else {
+                        console.error('Failed to fetch staff names:', data.message);
+                        showResponseMessage('Failed to load staff names. Please try again later.', 'danger');
+                    }
+                } catch (error) {
+                    console.error('Error fetching staff names:', error);
+                    showResponseMessage('Error fetching staff names. Please check your connection.', 'danger');
+                }
+            }
+
+            // Function to display messages to the user
+            function showResponseMessage(message, type) {
+                const responseMessage = document.createElement('div');
+                responseMessage.className = `alert alert-${type}`;
+                responseMessage.textContent = message;
+                document.body.appendChild(responseMessage);
+                setTimeout(() => {
+                    responseMessage.remove();
+                }, 3000);
+            }
+
+            // Event listener for save changes button
+            document.getElementById('save-schedule-changes-btn').addEventListener('click', function() {
+                const scheduleId = document.getElementById('schedule-id').value;
+                const staffId = document.getElementById('staff-name').value;
+                const appointmentDate = document.getElementById('appointment-date').value;
+
+                // Prepare data to send to the server
+                const updatedSchedule = {
+                    schedule_id: scheduleId,
+                    staff_id: staffId,
+                    appointment_date: appointmentDate
+                };
+
+                // Send the updated data to the server
+                fetch(`/admin/update/schedule`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedSchedule)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Schedule updated successfully!');
+                        // Refresh or update the schedule list to reflect changes
+                        location.reload(); // Alternatively, update the schedule list without reloading
+                    } else {
+                        alert('Failed to update schedule. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error updating schedule:', error));
+            });
+        });
+</script> 
+
     
-    
-    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-</div></form></div>

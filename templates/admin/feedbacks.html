@@ -39,12 +39,12 @@
                     <!-- Loop through feedbacks passed from the server -->
                     {% if feedbacks %}
                         {% for feedback in feedbacks %}
-                            <div class="feedback-item mb-4 p-3 border rounded {% if not feedback.read %}font-weight-bold{% endif %}">
+                            <div class="feedback-item mb-4 p-3 border rounded {% if not feedback.read %}font-weight-bold unread-feedback{% endif %}" data-feedback-id="{{ feedback.feedback_id }}">
                                 <!-- Feedback details -->
                                 <h3>{{ feedback.name }}</h3>
                                 <p><strong>User ID:</strong> {{ feedback.user_id }}</p>
                                 <p><strong>Email:</strong> {{ feedback.email }}</p>
-                                <p><strong>Date:</strong> {{ feedback.date.strftime('%Y-%m-%d') }}</p>
+                                <p><strong>Date:</strong> {{ feedback.date }}</p>
                                 <p>{{ feedback.message }}</p>
                                 
                                 <!-- Mark as Read button -->
@@ -100,21 +100,28 @@
             document.querySelectorAll('.mark-as-read').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const feedbackId = event.target.getAttribute('data-feedback-id');
-                    fetch(`/admin/client/feedback_read/${feedbackId}`, {
+
+                    // Perform AJAX request to update the database with the feedback marked as read
+                    fetch(`/admin/feedback_read/${feedbackId}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         }
                     })
-                    .then(response => {
-                        if (response.ok) {
-                            // Update the appearance of the feedback item
-                            event.target.closest('.feedback-item').classList.remove('font-weight-bold');
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'Feedback marked as read successfully') {
+                            // Find the corresponding feedback item and update its styling
+                            const feedbackItem = document.querySelector(`.feedback-item[data-feedback-id="${feedbackId}"]`);
+                            feedbackItem.classList.remove('font-weight-bold', 'unread-feedback');
+                            feedbackItem.classList.add('text-muted'); // Optional: Add a class to indicate it's read
                         } else {
-                            console.error('Failed to mark feedback as read');
+                            console.error('Error marking as read:', data.message);
                         }
                     })
-                    .catch(error => console.error('Error marking feedback as read:', error));
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
                 });
             });
         });
